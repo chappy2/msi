@@ -1,7 +1,7 @@
 # Dependencies
-presentation/node_modules/**
-reveal-run-in-terminal/**
-reveal.js/**
+presentation/node_modules/**/*
+reveal-run-in-terminal/**/*
+reveal.js/**/*
 #Local configurations
 presentation/config/default.json
-.c9/**
+.c9/**/*
