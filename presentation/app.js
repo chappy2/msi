@@ -13,7 +13,7 @@ app.use(revealRunInTerminal({
 }));
 
 let revealRunInTerminalPlugin = path.resolve(__dirname, '../reveal-run-in-terminal/static');
-let revealJsPath = path.resolve(__dirname, 'static/reveal.js');
+let revealJsPath = path.resolve(__dirname, '../reveal.js');
 app.use(express.static(revealRunInTerminalPlugin));
 app.use(express.static(revealJsPath));
 
