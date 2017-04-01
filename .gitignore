@@ -4,3 +4,4 @@ reveal-run-in-terminal/**
 reveal.js/**
 #Local configurations
 presentation/config/default.json
+.c9/**
