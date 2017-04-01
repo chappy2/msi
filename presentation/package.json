@@ -1,0 +1,11 @@
+{
+  "name": "msiserver",
+  "version": "1.0.0",
+  "description": "Server code for msi presentation about CoffeeScript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sss aw",
+  "license": "ISC"
+}
