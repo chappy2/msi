@@ -19,7 +19,12 @@ git clone https://github.com/hakimel/reveal.js
 ```
 ### Server Installation
 #### Coffee Script
-Unter Linux ging das npm package coffee-scirpt nicht. Momentan muss das separat installiert werden.
+Unter Ubuntu ging das npm package coffee-scirpt nicht. Habe es temporär ohne npm installiert:
+
+```
+sudo apt-get install coffeescript
+```
+
 #### Nodejs und Dependencies
 Node js: https://nodejs.org/en/download/package-manager/
 Version _v4.6.2_ benutzen.
