@@ -1,4 +1,5 @@
 "use strict";
+require('use-strict')
 const express = require('express');
 const path = require('path');
 const revealRunInTerminal = require('../reveal-run-in-terminal/index.js');

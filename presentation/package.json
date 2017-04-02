@@ -1,23 +1,24 @@
 {
   "name": "msiserver",
   "version": "1.0.0",
-  "description": "Server code for msi presentation about CoffeeScript",
+  "description": "Server code for msi presentation",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "sss aw",
-  "license": "ISC",
   "dependencies": {
     "config": "^1.25.1",
     "express": "^4.15.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "use-strict": "^1.0.1"
   },
   "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chappy2/msi.git"
   },
+  "author": "sss aw",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/chappy2/msi/issues"
   },
