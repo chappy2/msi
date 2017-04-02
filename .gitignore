@@ -2,6 +2,7 @@
 presentation/node_modules/
 reveal-run-in-terminal/
 reveal.js/
+coffeescript/
 #Local configurations
 presentation/config/default.json
 .c9/
