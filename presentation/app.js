@@ -8,7 +8,7 @@ let app = express();
 
 app.use(revealRunInTerminal({
   publicPath: __dirname,
-  commandRegex: /node/,
+  commandRegex: /coffee/,
   log: true,
   allowRemote: true
 }));
