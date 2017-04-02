@@ -1,1 +1,0 @@
- --compile --output example1/dist/ example1/src/

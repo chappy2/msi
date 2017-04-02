@@ -15,7 +15,9 @@ app.use(revealRunInTerminal({
 
 let revealRunInTerminalPlugin = path.resolve(__dirname, '../reveal-run-in-terminal/static');
 let revealJsPath = path.resolve(__dirname, '../reveal.js');
+//let coffeeScriptOfficialExamples = path.resolve(__dirname, '../coffeescript/documentation');
 app.use(express.static(revealRunInTerminalPlugin));
 app.use(express.static(revealJsPath));
+//app.use(express.static(coffeeScriptOfficialExamples));
 
 app.listen(config.Server.Port,config.Server.Ip);
