@@ -6,14 +6,17 @@ Assignment for MSI. Presentation made with [reveal.js](http://lab.hakim.se/revea
 Datei *msi/presentation/config/defaultExample.json* kopieren und umbenennen in *default.json*. Je nach Umgebung die Werte anpassen.
 
 ### Abhängigkeiten ohne npm
-Zusätzlich benötigt (innerhalb msi ordner. deswegen der unterordner)
-jeweils im Ordner msi git clone:
+Zusätzlich benötigt jeweils im Ordner msi git clone:
+
+
 Reveal js Plugin:
-https://github.com/dluxemburg/reveal-run-in-terminal
-
+```
+git clone https://github.com/dluxemburg/reveal-run-in-terminal
+```
 Reveal js:
-https://github.com/hakimel/reveal.js
-
+```
+git clone https://github.com/hakimel/reveal.js
+```
 ### Server Installation
 Node js: https://nodejs.org/en/download/package-manager/
 Version _v4.6.2_ benutzen.
