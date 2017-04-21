@@ -1,8 +1,11 @@
 # Dependencies
 presentation/node_modules/
+presentation/code/Moviedatabase/node_modules/
 reveal-run-in-terminal/
 reveal.js/
 coffeescript/
 #Local configurations
 presentation/config/default.json
+presentation/code/Moviedatabase/config/default.json
 .c9/
+literaturBeispiele/
