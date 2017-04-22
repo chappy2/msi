@@ -31,7 +31,6 @@ Film = (function() {
 
   Film.prototype.setAttributes = function(values) {
     if (this.validate(values)) {
-      console.log(values.title);
       this.attributes = values;
       return true;
     }
@@ -54,16 +53,20 @@ FilmList = (function() {
   }
 
   FilmList.prototype.newFilm = function(values) {
-    var elem;
-    console.log("new film");
+    var checkExisting, elem, futureId;
+    futureId = values.title + values.year;
+    checkExisting = this.getFilm(futureId);
+    if ((checkExisting == null) || checkExisting.length >= 1) {
+      return false;
+    }
     elem = new Film(values);
     this.collection.push(elem);
-    return this.save();
+    this.save();
+    return true;
   };
 
   FilmList.prototype.removeFilm = function(ids) {
     var film;
-    console.log(ids);
     this.collection = (function() {
       var i, len, ref, results;
       ref = this.collection;
@@ -80,9 +83,20 @@ FilmList = (function() {
   };
 
   FilmList.prototype.getFilm = function(ids) {
-    return this.collection.filter(function(obj) {
-      return obj.id = ids;
-    });
+    var film, result;
+    result = (function() {
+      var i, len, ref, results;
+      ref = this.collection;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        film = ref[i];
+        if (film.id === ids) {
+          results.push(film);
+        }
+      }
+      return results;
+    }).call(this);
+    return result;
   };
 
   FilmList.prototype.getCollection = function() {
@@ -124,16 +138,12 @@ FilmListView = (function() {
     this.inputRuntime = '#runtime';
     this.tbodyData = '#contentData';
     this.filmList = filmList;
-    this.filmList.fetch();
-    console.log('done fetching');
     this.render();
     $(this.inputFsk).on('keydown', (function(_this) {
       return function(event) {
-        console.log('enterd something');
         return _this.createOnEnter(event);
       };
     })(this));
-    console.log(this.inputFsk);
     this;
   }
 
@@ -200,13 +210,17 @@ FilmListView = (function() {
   };
 
   FilmListView.prototype.createOnEnter = function(event) {
-    var valid, values;
+    var created, valid, values;
     if (event.keyCode === 13) {
       values = this.readInputFields();
       valid = this.checkInputFields(values);
       if (valid) {
-        this.filmList.newFilm(values);
-        return this.render();
+        created = this.filmList.newFilm(values);
+        if (!created) {
+          return $("#dialog-already-exist").dialog("open");
+        } else {
+          return this.render();
+        }
       } else {
         return $("#dialog-invalid-input").dialog("open");
       }
@@ -214,8 +228,6 @@ FilmListView = (function() {
   };
 
   FilmListView.prototype.deleteFilm = function(event) {
-    console.log(event);
-    console.log("deleting" + event.currentTarget.id);
     this.filmList.removeFilm(event.currentTarget.id);
     return $("#" + event.currentTarget.id + "_row").remove();
   };
@@ -250,3 +262,5 @@ dialogOptions = {
 };
 
 $("#dialog-invalid-input").dialog(dialogOptions);
+
+$("#dialog-already-exist").dialog(dialogOptions);

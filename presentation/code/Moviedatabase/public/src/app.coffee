@@ -24,7 +24,6 @@ class Film
         true
     setAttributes: (values) ->
         if @validate values
-            console.log values.title
             @attributes=values
             return true
         return false
@@ -38,18 +37,20 @@ class FilmList
         @fetch()
         @
     newFilm: (values) ->
-        console.log "new film"
+        futureId=values.title+values.year
+        checkExisting=@getFilm(futureId)
+        if not checkExisting? or checkExisting.length>=1
+            return false
         elem=new Film(values)
-        #only push if valid
         @collection.push elem
         @save()
+        true
     removeFilm: (ids) ->
-        console.log ids
         @collection = (film for film in @collection when film.id == ids)
         @save()
     getFilm:(ids) -> 
-        @collection.filter (obj) ->
-            obj.id=ids
+        result=(film for film in @collection when film.id == ids)
+        result
     getCollection: ->
         @collection
     # route noch nicht da
@@ -60,7 +61,7 @@ class FilmList
             console.log 'no data in storage'
             @collection=[]
             @newFilm {year:2018,title:'le movie',director:'derpington',fsk:'18',runtime:'2011-2015'}
-        else 
+         else 
             @collection=JSON.parse temp
     save: ->
         localStorage[@storageName]=JSON.stringify @getCollection()
@@ -79,18 +80,14 @@ class FilmListView
         @tbodyData= '#contentData'
         
         @filmList=filmList
-        @filmList.fetch()
         
-        console.log 'done fetching'
         # add callback for fetch, an render when done
         # Example no arguments function calls need ()
         @render()
         # Example for fat arrow => binding
         $(@inputFsk).on 'keydown',(event) =>
-            console.log 'enterd something'
             @createOnEnter event
         # return this
-        console.log @inputFsk
         @
     render: ->
         # Example for Array Comprehension
@@ -130,13 +127,14 @@ class FilmListView
             values=@readInputFields()
             valid=@checkInputFields values
             if  valid
-                @filmList.newFilm values
-                @render()
+                created=@filmList.newFilm values
+                if not created
+                    $("#dialog-already-exist").dialog("open")
+                else
+                    @render()
             else
                 $("#dialog-invalid-input").dialog("open")
     deleteFilm:(event) ->
-        console.log event
-        console.log "deleting"+event.currentTarget.id
         @filmList.removeFilm event.currentTarget.id
         $("#"+event.currentTarget.id+"_row").remove()
     selectFilmForEdit: (event)->
@@ -160,4 +158,5 @@ dialogOptions={
     modal: true
 }
 $("#dialog-invalid-input").dialog dialogOptions
+$("#dialog-already-exist").dialog dialogOptions
 #$("#contentData").selectable()
