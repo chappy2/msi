@@ -1,5 +1,112 @@
 <html>
     
-    <head></head>
-    <body>hello world</body>
+    <head>
+        
+        	<link href="jquery-ui.css" rel="stylesheet">
+        		<style>
+	body{
+		font-family: "Trebuchet MS", sans-serif;
+		background-color:#cdc3b7;
+	}
+	  #feedback { font-size: 1.4em; }
+  #contentData .ui-selecting { background: #FECA40; }
+  #contentData .ui-selected { background: #F39814; color: white; }
+  #contentData { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #contentData li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+  
+	.demoPage {
+		background-color:#fff;
+		width:1024px;
+		min-height:500px;
+		margin: 50px auto;
+		border: 5px solid #efefef;
+		padding: 10px;
+		
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	select {
+		width: 200px;
+	}
+	</style>
+    </head>
+    <body>
+    	<div class="demoPage">
+    <h1 demoHeaders>Moviedatabase</h1>
+		<table id="MovieTable" class="ui-widget ui-helper-clearfix">
+			<thead class="ui-state-default ui-corner-all" >
+				<tr id="sortButtons">
+					<th><a href="javascript: chooseAlgorithmAndSort('title');" id="sortTitle" name="title">Title</a></th>
+					<th><a href="javascript: chooseAlgorithmAndSort('director');" id="sortDirector" name="director">Director</a></th>
+					<th><a href="javascript: chooseAlgorithmAndSort('year');" id="sortYear" name="year">Year</a></th>
+					<th><a href="javascript: chooseAlgorithmAndSort('runtime');" id="sortRuntime" name="runtime">Runtime</a></th>
+					<th><a href="javascript: chooseAlgorithmAndSort('fsk');" id="sortfsk" name="fsk">FSK</a></th>
+					<th></th>
+				</tr>
+			
+			</thead>
+			<tbody id="inputFields"><form>	<tr>
+					<td><input id="title" type="text" value=""></td>
+					<td><input id="director" type="text" value=""></td>
+					<td><input id="year" type="text" value=""></td>
+					<td><input id="runtime" type="text" value=""></td>
+					<td><input id="fsk" type="text" value=""></td>
+					<td></td>
+				</tr>
+				</form></tbody>
+			<tbody id="contentData" >
+		<tr >
+					<td >titel</td>
+					<td>drector</td>
+					<td>year</td>
+					<td>runtime</td>
+					<td>fsk </td>
+					<td class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-trash"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	<div id="dialog-invalid-input" title="Invalid Input">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Please provide for each input field a value</p>
+</div>
+<div id="dialog-already-exist" title="Movie already exists">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>A movie with this title and year alredy exists.</p>
+</div>
+	</div>
+        <script src="external/jquery/jquery.js"></script>
+        <script src="jquery-ui.js"></script>
+        <script src="app.js"></script>
+        
+    </body>
 </html>
