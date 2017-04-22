@@ -13,13 +13,16 @@ Model:
         - create
         - destroy
  */
-var Film, FilmList, FilmListView, app, filmList;
+var Film, FilmList, FilmListView, app, dialogOptions, filmList;
 
 Film = (function() {
-  Film.attributes = {};
-
   function Film(values) {
-    this.setAttributes(values);
+    var success, temp;
+    success = this.setAttributes(values);
+    if (success) {
+      temp = values.title + values.year;
+      this.id = temp.replace(" ", "");
+    }
   }
 
   Film.prototype.validate = function(values) {
@@ -29,8 +32,10 @@ Film = (function() {
   Film.prototype.setAttributes = function(values) {
     if (this.validate(values)) {
       console.log(values.title);
-      return this.attributes = values;
+      this.attributes = values;
+      return true;
     }
+    return false;
   };
 
   Film.prototype.getAttributes = function() {
@@ -56,8 +61,28 @@ FilmList = (function() {
     return this.save();
   };
 
-  FilmList.prototype.getFilm = function() {
-    return false;
+  FilmList.prototype.removeFilm = function(ids) {
+    var film;
+    console.log(ids);
+    this.collection = (function() {
+      var i, len, ref, results;
+      ref = this.collection;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        film = ref[i];
+        if (film.id === ids) {
+          results.push(film);
+        }
+      }
+      return results;
+    }).call(this);
+    return this.save();
+  };
+
+  FilmList.prototype.getFilm = function(ids) {
+    return this.collection.filter(function(obj) {
+      return obj.id = ids;
+    });
   };
 
   FilmList.prototype.getCollection = function() {
@@ -125,30 +150,42 @@ FilmListView = (function() {
       return results;
     }).call(this);
     $(this.tbodyData).empty();
-    return $(this.tbodyData).append(trString.join());
+    $(this.tbodyData).append(trString.join());
+    this.addDeleteEvents();
+    return this;
   };
 
   FilmListView.prototype.renderFilm = function(film) {
     var values;
     values = film.attributes;
-    return "<tr><td>" + values.title + "</td><td>" + values.director + "</td><td>" + values.year + "</td><td>" + values.runtime + "</td><td>" + values.fsk + "</td><td><a class='ui-state-default ui-corner-all'><span class='ui-icon ui-icon-trash'></span></a></td><tr>";
+    return "<tr id='" + film.id + "_row'><td>" + values.title + "</td><td>" + values.director + "</td><td>" + values.year + "</td><td>" + values.runtime + "</td><td>" + values.fsk + "</td><td><form><input type='button' id='" + film.id + "'  class='' /></form></td><tr>";
+  };
+
+  FilmListView.prototype.addDeleteEvents = function() {
+    var film, i, len, ref, results;
+    ref = this.filmList.getCollection();
+    results = [];
+    for (i = 0, len = ref.length; i < len; i++) {
+      film = ref[i];
+      results.push($("#" + film.id).on('click', (function(_this) {
+        return function(event) {
+          return _this.deleteFilm(event);
+        };
+      })(this)));
+    }
+    return results;
   };
 
   FilmListView.prototype.checkInputFields = function(values) {
-    var field, isEmpty;
-    isEmpty = (function() {
-      var i, len, results;
-      results = [];
-      for (i = 0, len = values.length; i < len; i++) {
-        field = values[i];
-        if (field !== '') {
-          results.push(true);
-        }
+    var isNotEmpty, k, v;
+    isNotEmpty = true;
+    for (k in values) {
+      v = values[k];
+      if (!v) {
+        isNotEmpty = false;
       }
-      return results;
-    })();
-    console.log(isEmpty);
-    return isEmpty;
+    }
+    return isNotEmpty;
   };
 
   FilmListView.prototype.readInputFields = function() {
@@ -163,18 +200,24 @@ FilmListView = (function() {
   };
 
   FilmListView.prototype.createOnEnter = function(event) {
-    var values;
+    var valid, values;
     if (event.keyCode === 13) {
       values = this.readInputFields();
-      if (this.checkInputFields(values)) {
+      valid = this.checkInputFields(values);
+      if (valid) {
         this.filmList.newFilm(values);
         return this.render();
+      } else {
+        return $("#dialog-invalid-input").dialog("open");
       }
     }
   };
 
   FilmListView.prototype.deleteFilm = function(event) {
-    return true;
+    console.log(event);
+    console.log("deleting" + event.currentTarget.id);
+    this.filmList.removeFilm(event.currentTarget.id);
+    return $("#" + event.currentTarget.id + "_row").remove();
   };
 
   FilmListView.prototype.selectFilmForEdit = function(event) {
@@ -198,3 +241,12 @@ filmList = new FilmList();
 app = new FilmListView(filmList);
 
 app.render();
+
+dialogOptions = {
+  autoOpen: false,
+  show: "blind",
+  hide: "blind",
+  modal: true
+};
+
+$("#dialog-invalid-input").dialog(dialogOptions);

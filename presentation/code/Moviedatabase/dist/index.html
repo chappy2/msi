@@ -8,6 +8,12 @@
 		font-family: "Trebuchet MS", sans-serif;
 		background-color:#cdc3b7;
 	}
+	  #feedback { font-size: 1.4em; }
+  #contentData .ui-selecting { background: #FECA40; }
+  #contentData .ui-selected { background: #F39814; color: white; }
+  #contentData { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #contentData li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+  
 	.demoPage {
 		background-color:#fff;
 		width:1024px;
@@ -59,7 +65,6 @@
     <body>
     	<div class="demoPage">
     <h1 demoHeaders>Moviedatabase</h1>
-	<form name="formMovTable">
 		<table id="MovieTable" class="ui-widget ui-helper-clearfix">
 			<thead class="ui-state-default ui-corner-all" >
 				<tr id="sortButtons">
@@ -72,14 +77,15 @@
 				</tr>
 			
 			</thead>
-			<tbody id="inputFields">	<tr>
+			<tbody id="inputFields"><form>	<tr>
 					<td><input id="title" type="text" value=""></td>
 					<td><input id="director" type="text" value=""></td>
 					<td><input id="year" type="text" value=""></td>
 					<td><input id="runtime" type="text" value=""></td>
 					<td><input id="fsk" type="text" value=""></td>
 					<td></td>
-				</tr></tbody>
+				</tr>
+				</form></tbody>
 			<tbody id="contentData" >
 		<tr >
 					<td >titel</td>
@@ -91,18 +97,13 @@
 				</tr>
 			</tbody>
 		</table>
-	</form>
+	<div id="dialog-invalid-input" title="Invalid Input">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Please provide for each input field a value</p>
+</div>
 	</div>
         <script src="external/jquery/jquery.js"></script>
         <script src="jquery-ui.js"></script>
         <script src="app.js"></script>
-        <script>
-           
-            $( "#button" ).button();
-            $( "#button-icon" ).button({
-	            icon: "ui-icon-gear",
-	            showLabel: false
-            });
-        </script>
+        
     </body>
 </html>
