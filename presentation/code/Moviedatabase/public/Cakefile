@@ -12,7 +12,6 @@ files = [
   'src'
 ]
 
-
 fs = require 'fs'
 {print} = require 'util'
 {spawn, exec} = require 'child_process'
