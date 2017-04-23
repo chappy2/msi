@@ -11,15 +11,16 @@ Model:
         - create
         - destroy
         ###
+removeSpace= (input) ->
+    input.replace " ",""
 
 class Film
     # values as object {year:2001,...}
+    # Films are stored in localstorage, all functions are only for creation. JSON doesn't provide functions.
     constructor: (values) ->
         success=@setAttributes values
-        success
-    id: ->
-        temp=values.title + values.year
-        temp.replace " ",""
+        if success
+            @id=removeSpace values.title + values.year
     validate: (values)->
         # if true then set attributes
         true
@@ -28,8 +29,6 @@ class Film
             @attributes=values
             return true
         return false
-    getAttributes: ->
-        return @attributes
 # Film List uses Localstorage. Complete Colleciton is loaded into localstorage
 class FilmList
     # add sorting stuff
@@ -38,7 +37,7 @@ class FilmList
         @fetch()
         @
     newFilm: (values) ->
-        futureId=values.title+values.year
+        futureId=removeSpace values.title + values.year
         checkExisting=@getFilm(futureId)
         if not checkExisting? or checkExisting.length>=1
             return false
@@ -69,10 +68,7 @@ class FilmList
     updateFilm: (id,attribut,value) ->
         films=@getFilm id
         films[0].attributes[attribut]=value
-    
-        
-
-
+        films[0].id=removeSpace films[0].attributes.title+films[0].attributes.year
 
 class FilmListView
     constructor: (filmList)->
@@ -83,6 +79,7 @@ class FilmListView
         @inputRuntime='#runtime'
         @tbodyData= '#contentData'
         @buttonSave='#save-table'
+        @buttonCreate='#create-film'
         @classNotSaved='.editable-unsaved'
         
         @filmList=filmList
@@ -93,6 +90,9 @@ class FilmListView
         # Example for fat arrow => binding
         $(@inputFsk).on 'keydown',(event) =>
             @createOnEnter event
+        $(@buttonCreate).on 'click',(event) =>
+            console.log "fired"
+            @createFilm event
         $(@buttonSave).on 'click',(event) =>
             @saveFilmList event
        
@@ -125,7 +125,7 @@ class FilmListView
             <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_year">#{values.year}</a></td>
             <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_runtime">#{values.runtime}</a></td>
             <td><a href="#" data-type="text"  data-pk="#{film.id}"   data-title="Enter username" id="#{film.id}_fsk">#{values.fsk}</a></td>
-            <td><form><button  id='#{film.id}'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' ><span class="ui-icon ui-icon-trash"></span></button></form></td><tr>"""
+            <td><form><button  id='#{film.id}'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' ><span class="ui-icon ui-icon-minus"></span></button></form></td><tr>"""
     initXEditableFields: ->
         $.fn.editable.defaults.mode = 'inline'
         for film in @filmList.getCollection()
@@ -155,18 +155,20 @@ class FilmListView
         values.runtime =$(@inputRuntime).val()
         values.fsk =$(@inputFsk).val()
         values
+    createFilm: (event) ->
+        values=@readInputFields()
+        valid=@checkInputFields values
+        if  valid
+            created=@filmList.newFilm values
+            if not created
+                $("#dialog-already-exist").dialog("open")
+            else
+                @render()
+        else
+            $("#dialog-invalid-input").dialog("open")
     createOnEnter:(event) ->
         if event.keyCode == 13
-            values=@readInputFields()
-            valid=@checkInputFields values
-            if  valid
-                created=@filmList.newFilm values
-                if not created
-                    $("#dialog-already-exist").dialog("open")
-                else
-                    @render()
-            else
-                $("#dialog-invalid-input").dialog("open")
+            @createFilm()
     deleteFilm:(event) ->
         @filmList.removeFilm event.currentTarget.id
         $("#"+event.currentTarget.id+"_row").remove()
@@ -194,6 +196,7 @@ dialogOptions={
 }
 $("#dialog-invalid-input").dialog dialogOptions
 $("#dialog-already-exist").dialog dialogOptions
+
 
 $.fn.editable.defaults.mode = 'inline'
 #$("#contentData").selectable()

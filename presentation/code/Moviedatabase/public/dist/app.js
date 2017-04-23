@@ -13,20 +13,20 @@ Model:
         - create
         - destroy
  */
-var Film, FilmList, FilmListView, app, dialogOptions, filmList;
+var Film, FilmList, FilmListView, app, dialogOptions, filmList, removeSpace;
+
+removeSpace = function(input) {
+  return input.replace(" ", "");
+};
 
 Film = (function() {
   function Film(values) {
     var success;
     success = this.setAttributes(values);
-    success;
+    if (success) {
+      this.id = removeSpace(values.title + values.year);
+    }
   }
-
-  Film.prototype.id = function() {
-    var temp;
-    temp = values.title + values.year;
-    return temp.replace(" ", "");
-  };
 
   Film.prototype.validate = function(values) {
     return true;
@@ -38,10 +38,6 @@ Film = (function() {
       return true;
     }
     return false;
-  };
-
-  Film.prototype.getAttributes = function() {
-    return this.attributes;
   };
 
   return Film;
@@ -57,7 +53,7 @@ FilmList = (function() {
 
   FilmList.prototype.newFilm = function(values) {
     var checkExisting, elem, futureId;
-    futureId = values.title + values.year;
+    futureId = removeSpace(values.title + values.year);
     checkExisting = this.getFilm(futureId);
     if ((checkExisting == null) || checkExisting.length >= 1) {
       return false;
@@ -131,7 +127,8 @@ FilmList = (function() {
   FilmList.prototype.updateFilm = function(id, attribut, value) {
     var films;
     films = this.getFilm(id);
-    return films[0].attributes[attribut] = value;
+    films[0].attributes[attribut] = value;
+    return films[0].id = removeSpace(films[0].attributes.title + films[0].attributes.year);
   };
 
   return FilmList;
@@ -147,12 +144,19 @@ FilmListView = (function() {
     this.inputRuntime = '#runtime';
     this.tbodyData = '#contentData';
     this.buttonSave = '#save-table';
+    this.buttonCreate = '#create-film';
     this.classNotSaved = '.editable-unsaved';
     this.filmList = filmList;
     this.render();
     $(this.inputFsk).on('keydown', (function(_this) {
       return function(event) {
         return _this.createOnEnter(event);
+      };
+    })(this));
+    $(this.buttonCreate).on('click', (function(_this) {
+      return function(event) {
+        console.log("fired");
+        return _this.createFilm(event);
       };
     })(this));
     $(this.buttonSave).on('click', (function(_this) {
@@ -203,7 +207,7 @@ FilmListView = (function() {
   FilmListView.prototype.renderFilm = function(film) {
     var values;
     values = film.attributes;
-    return "<tr id='" + film.id + "_row'>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_title\">" + values.title + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_director\">" + values.director + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_year\">" + values.year + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_runtime\">" + values.runtime + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"   data-title=\"Enter username\" id=\"" + film.id + "_fsk\">" + values.fsk + "</a></td>\n<td><form><button  id='" + film.id + "'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' ><span class=\"ui-icon ui-icon-trash\"></span></button></form></td><tr>";
+    return "<tr id='" + film.id + "_row'>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_title\">" + values.title + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_director\">" + values.director + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_year\">" + values.year + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_runtime\">" + values.runtime + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"   data-title=\"Enter username\" id=\"" + film.id + "_fsk\">" + values.fsk + "</a></td>\n<td><form><button  id='" + film.id + "'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' ><span class=\"ui-icon ui-icon-minus\"></span></button></form></td><tr>";
   };
 
   FilmListView.prototype.initXEditableFields = function() {
@@ -260,21 +264,25 @@ FilmListView = (function() {
     return values;
   };
 
-  FilmListView.prototype.createOnEnter = function(event) {
+  FilmListView.prototype.createFilm = function(event) {
     var created, valid, values;
-    if (event.keyCode === 13) {
-      values = this.readInputFields();
-      valid = this.checkInputFields(values);
-      if (valid) {
-        created = this.filmList.newFilm(values);
-        if (!created) {
-          return $("#dialog-already-exist").dialog("open");
-        } else {
-          return this.render();
-        }
+    values = this.readInputFields();
+    valid = this.checkInputFields(values);
+    if (valid) {
+      created = this.filmList.newFilm(values);
+      if (!created) {
+        return $("#dialog-already-exist").dialog("open");
       } else {
-        return $("#dialog-invalid-input").dialog("open");
+        return this.render();
       }
+    } else {
+      return $("#dialog-invalid-input").dialog("open");
+    }
+  };
+
+  FilmListView.prototype.createOnEnter = function(event) {
+    if (event.keyCode === 13) {
+      return this.createFilm();
     }
   };
 
