@@ -16,9 +16,10 @@ class Film
     # values as object {year:2001,...}
     constructor: (values) ->
         success=@setAttributes values
-        if success
-            temp=values.title + values.year
-            @id=temp.replace " ",""
+        success
+    id: ->
+        temp=values.title + values.year
+        temp.replace " ",""
     validate: (values)->
         # if true then set attributes
         true
@@ -65,6 +66,9 @@ class FilmList
             @collection=JSON.parse temp
     save: ->
         localStorage[@storageName]=JSON.stringify @getCollection()
+    updateFilm: (id,attribut,value) ->
+        films=@getFilm id
+        films[0].attributes[attribut]=value
     
         
 
@@ -78,6 +82,8 @@ class FilmListView
         @inputYear='#year'
         @inputRuntime='#runtime'
         @tbodyData= '#contentData'
+        @buttonSave='#save-table'
+        @classNotSaved='.editable-unsaved'
         
         @filmList=filmList
         
@@ -87,8 +93,14 @@ class FilmListView
         # Example for fat arrow => binding
         $(@inputFsk).on 'keydown',(event) =>
             @createOnEnter event
+        $(@buttonSave).on 'click',(event) =>
+            @saveFilmList event
+       
         # return this
         @
+    findEventOnChangeEditable: -> 
+        $('edit').on 'save',(event) =>
+            console.log event
     render: ->
         # Example for Array Comprehension
         trString=(@renderFilm film for film in @filmList.getCollection())
@@ -96,18 +108,24 @@ class FilmListView
         $(@tbodyData).append trString.join()
         @addDeleteEvents()
         @initXEditableFields()
+        $( "button" ).button();
+        
+        $('.editable').on 'click',(event) =>
+            console.log event
+            $('div').on 'save',(event) =>
+                $(@buttonSave).button("enable")
+        $(@buttonSave).button("disable")      
         @
     renderFilm: (film)->
         values= film.attributes
         # Example for String Interpolation with #{}
         """<tr id='#{film.id}_row'>
-            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_title">#{values.title}</a></td>
-            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_director">#{values.director}</a></td>
-            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_year">#{values.year}</a></td>
-            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_runtime">#{values.runtime}</a></td>
-            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_fsk">#{values.fsk}</a></td>
-            <td><form><button  id='#{film.id}'  class='' ><span class="ui-icon 	ui-icon-trash"></span></button><button  id='#{film.id}_saverow'  class='' ><span class="ui-icon ui-icon-disk"></span></button></form></td><tr>"""
-    # events
+            <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_title">#{values.title}</a></td>
+            <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_director">#{values.director}</a></td>
+            <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_year">#{values.year}</a></td>
+            <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_runtime">#{values.runtime}</a></td>
+            <td><a href="#" data-type="text"  data-pk="#{film.id}"   data-title="Enter username" id="#{film.id}_fsk">#{values.fsk}</a></td>
+            <td><form><button  id='#{film.id}'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' ><span class="ui-icon ui-icon-trash"></span></button></form></td><tr>"""
     initXEditableFields: ->
         $.fn.editable.defaults.mode = 'inline'
         for film in @filmList.getCollection()
@@ -152,10 +170,12 @@ class FilmListView
     deleteFilm:(event) ->
         @filmList.removeFilm event.currentTarget.id
         $("#"+event.currentTarget.id+"_row").remove()
-    selectFilmForEdit: (event)->
-        true
-    updateFilm: (event)->
-        true
+    saveFilmList: (event)->
+        $(@classNotSaved).each (k, v) =>
+            newV=v.id.split "_"
+            @filmList.updateFilm newV[0],newV[1],v.innerText
+        @filmList.save()
+        @render()
     sort: ->
         true
 
@@ -176,5 +196,4 @@ $("#dialog-invalid-input").dialog dialogOptions
 $("#dialog-already-exist").dialog dialogOptions
 
 $.fn.editable.defaults.mode = 'inline'
-$('#username').editable()
 #$("#contentData").selectable()

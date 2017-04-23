@@ -17,13 +17,16 @@ var Film, FilmList, FilmListView, app, dialogOptions, filmList;
 
 Film = (function() {
   function Film(values) {
-    var success, temp;
+    var success;
     success = this.setAttributes(values);
-    if (success) {
-      temp = values.title + values.year;
-      this.id = temp.replace(" ", "");
-    }
+    success;
   }
+
+  Film.prototype.id = function() {
+    var temp;
+    temp = values.title + values.year;
+    return temp.replace(" ", "");
+  };
 
   Film.prototype.validate = function(values) {
     return true;
@@ -125,6 +128,12 @@ FilmList = (function() {
     return localStorage[this.storageName] = JSON.stringify(this.getCollection());
   };
 
+  FilmList.prototype.updateFilm = function(id, attribut, value) {
+    var films;
+    films = this.getFilm(id);
+    return films[0].attributes[attribut] = value;
+  };
+
   return FilmList;
 
 })();
@@ -137,6 +146,8 @@ FilmListView = (function() {
     this.inputYear = '#year';
     this.inputRuntime = '#runtime';
     this.tbodyData = '#contentData';
+    this.buttonSave = '#save-table';
+    this.classNotSaved = '.editable-unsaved';
     this.filmList = filmList;
     this.render();
     $(this.inputFsk).on('keydown', (function(_this) {
@@ -144,8 +155,21 @@ FilmListView = (function() {
         return _this.createOnEnter(event);
       };
     })(this));
+    $(this.buttonSave).on('click', (function(_this) {
+      return function(event) {
+        return _this.saveFilmList(event);
+      };
+    })(this));
     this;
   }
+
+  FilmListView.prototype.findEventOnChangeEditable = function() {
+    return $('edit').on('save', (function(_this) {
+      return function(event) {
+        return console.log(event);
+      };
+    })(this));
+  };
 
   FilmListView.prototype.render = function() {
     var film, trString;
@@ -163,13 +187,23 @@ FilmListView = (function() {
     $(this.tbodyData).append(trString.join());
     this.addDeleteEvents();
     this.initXEditableFields();
+    $("button").button();
+    $('.editable').on('click', (function(_this) {
+      return function(event) {
+        console.log(event);
+        return $('div').on('save', function(event) {
+          return $(_this.buttonSave).button("enable");
+        });
+      };
+    })(this));
+    $(this.buttonSave).button("disable");
     return this;
   };
 
   FilmListView.prototype.renderFilm = function(film) {
     var values;
     values = film.attributes;
-    return "<tr id='" + film.id + "_row'>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_title\">" + values.title + "</a></td>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_director\">" + values.director + "</a></td>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_year\">" + values.year + "</a></td>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_runtime\">" + values.runtime + "</a></td>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_fsk\">" + values.fsk + "</a></td>\n<td><form><button  id='" + film.id + "'  class='' ><span class=\"ui-icon 	ui-icon-trash\"></span></button><button  id='" + film.id + "_saverow'  class='' ><span class=\"ui-icon ui-icon-disk\"></span></button></form></td><tr>";
+    return "<tr id='" + film.id + "_row'>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_title\">" + values.title + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_director\">" + values.director + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_year\">" + values.year + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"  data-title=\"Enter username\" id=\"" + film.id + "_runtime\">" + values.runtime + "</a></td>\n<td><a href=\"#\" data-type=\"text\"  data-pk=\"" + film.id + "\"   data-title=\"Enter username\" id=\"" + film.id + "_fsk\">" + values.fsk + "</a></td>\n<td><form><button  id='" + film.id + "'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' ><span class=\"ui-icon ui-icon-trash\"></span></button></form></td><tr>";
   };
 
   FilmListView.prototype.initXEditableFields = function() {
@@ -249,12 +283,16 @@ FilmListView = (function() {
     return $("#" + event.currentTarget.id + "_row").remove();
   };
 
-  FilmListView.prototype.selectFilmForEdit = function(event) {
-    return true;
-  };
-
-  FilmListView.prototype.updateFilm = function(event) {
-    return true;
+  FilmListView.prototype.saveFilmList = function(event) {
+    $(this.classNotSaved).each((function(_this) {
+      return function(k, v) {
+        var newV;
+        newV = v.id.split("_");
+        return _this.filmList.updateFilm(newV[0], newV[1], v.innerText);
+      };
+    })(this));
+    this.filmList.save();
+    return this.render();
   };
 
   FilmListView.prototype.sort = function() {
@@ -283,5 +321,3 @@ $("#dialog-invalid-input").dialog(dialogOptions);
 $("#dialog-already-exist").dialog(dialogOptions);
 
 $.fn.editable.defaults.mode = 'inline';
-
-$('#username').editable();

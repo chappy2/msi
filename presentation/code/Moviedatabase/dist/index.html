@@ -16,10 +16,9 @@
   button {
   	width: 24px;
   	height: 24px;
-  	padding: 0;
   }
   td>form {
-  	width: 50px;
+  	width: 80px;
   	margin: auto auto;
   }
 	.demoPage {
@@ -29,7 +28,6 @@
 		margin: 50px auto;
 		border: 5px solid #efefef;
 		padding: 10px;
-		
 	}
 	.demoHeaders {
 		margin-top: 2em;
@@ -80,7 +78,7 @@
 					<th><a href="javascript: chooseAlgorithmAndSort('director');" id="sortDirector" name="director">Director</a></th>
 					<th><a href="javascript: chooseAlgorithmAndSort('year');" id="sortYear" name="year">Year</a></th>
 					<th><a href="javascript: chooseAlgorithmAndSort('runtime');" id="sortRuntime" name="runtime">Runtime</a></th>
-					<th><a href="javascript: chooseAlgorithmAndSort('fsk');" id="sortfsk" name="fsk">FSK</a></th>
+					<th ><a href="javascript: chooseAlgorithmAndSort('fsk');" id="sortfsk" name="fsk">FSK</a></th>
 					<th></th>
 				</tr>
 			
@@ -90,8 +88,8 @@
 					<td><input id="director" type="text" value=""></td>
 					<td><input id="year" type="text" value=""></td>
 					<td><input id="runtime" type="text" value=""></td>
-					<td><input id="fsk" type="text" value=""></td>
-					<td></td>
+					<td ><input id="fsk" type="text" value="" style="width:100px"></td>
+					<td><button  id='save-table'  class='ui-button ui-corner-all ui-widget ui-button-icon-only' ><span class="ui-icon ui-icon-disk"></span></button></td>
 				</tr>
 				</form></tbody>
 			<tbody id="contentData" >
@@ -106,7 +104,7 @@
 			</tbody>
 		</table>
 		<div id="dialog-invalid-input" title="Invalid Input">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Please provide for each input field a value</p>
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Please provide for each input field a value.</p>
 </div>
 <div id="dialog-already-exist" title="Movie already exists">
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>A movie with this title and year alredy exists.</p>
