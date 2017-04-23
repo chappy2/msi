@@ -1,7 +1,7 @@
 <html>
     
     <head>
-        
+        <link href="x-editable/dist/jqueryui-editable/css/jqueryui-editable.css" rel="stylesheet">
         	<link href="jquery-ui.css" rel="stylesheet">
         		<style>
 	body{
@@ -13,7 +13,14 @@
   #contentData .ui-selected { background: #F39814; color: white; }
   #contentData { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #contentData li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
-  
+  button {
+  	width: 24px;
+  	height: 24px;
+  }
+  td>form {
+  	width: 80px;
+  	margin: auto auto;
+  }
 	.demoPage {
 		background-color:#fff;
 		width:1024px;
@@ -21,7 +28,6 @@
 		margin: 50px auto;
 		border: 5px solid #efefef;
 		padding: 10px;
-		
 	}
 	.demoHeaders {
 		margin-top: 2em;
@@ -72,7 +78,7 @@
 					<th><a href="javascript: chooseAlgorithmAndSort('director');" id="sortDirector" name="director">Director</a></th>
 					<th><a href="javascript: chooseAlgorithmAndSort('year');" id="sortYear" name="year">Year</a></th>
 					<th><a href="javascript: chooseAlgorithmAndSort('runtime');" id="sortRuntime" name="runtime">Runtime</a></th>
-					<th><a href="javascript: chooseAlgorithmAndSort('fsk');" id="sortfsk" name="fsk">FSK</a></th>
+					<th ><a href="javascript: chooseAlgorithmAndSort('fsk');" id="sortfsk" name="fsk">FSK</a></th>
 					<th></th>
 				</tr>
 			
@@ -82,8 +88,8 @@
 					<td><input id="director" type="text" value=""></td>
 					<td><input id="year" type="text" value=""></td>
 					<td><input id="runtime" type="text" value=""></td>
-					<td><input id="fsk" type="text" value=""></td>
-					<td></td>
+					<td ><input id="fsk" type="text" value="" style="width:100px"></td>
+					<td><button  id='save-table'  class='ui-button ui-corner-all ui-widget ui-button-icon-only' ><span class="ui-icon ui-icon-disk"></span></button><button  id='create-film'  class='ui-button ui-corner-all ui-widget ui-button-icon-only' ><span class="ui-icon ui-icon-plus"></span></button></td>
 				</tr>
 				</form></tbody>
 			<tbody id="contentData" >
@@ -97,8 +103,8 @@
 				</tr>
 			</tbody>
 		</table>
-	<div id="dialog-invalid-input" title="Invalid Input">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Please provide for each input field a value</p>
+		<div id="dialog-invalid-input" title="Invalid Input">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Please provide for each input field a value.</p>
 </div>
 <div id="dialog-already-exist" title="Movie already exists">
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>A movie with this title and year alredy exists.</p>
@@ -106,6 +112,7 @@
 	</div>
         <script src="external/jquery/jquery.js"></script>
         <script src="jquery-ui.js"></script>
+         <script src="x-editable/dist/jqueryui-editable/js/jqueryui-editable.min.js"></script>
         <script src="app.js"></script>
         
     </body>
