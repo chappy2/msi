@@ -46,7 +46,7 @@ class FilmList
         @save()
         true
     removeFilm: (ids) ->
-        @collection = (film for film in @collection when film.id == ids)
+        @collection = (film for film in @collection when film.id != ids)
         @save()
     getFilm:(ids) -> 
         result=(film for film in @collection when film.id == ids)
@@ -95,12 +95,27 @@ class FilmListView
         $(@tbodyData).empty()
         $(@tbodyData).append trString.join()
         @addDeleteEvents()
+        @initXEditableFields()
         @
     renderFilm: (film)->
         values= film.attributes
         # Example for String Interpolation with #{}
-        "<tr id='#{film.id}_row'><td>#{values.title}</td><td>#{values.director}</td><td>#{values.year}</td><td>#{values.runtime}</td><td>#{values.fsk}</td><td><form><input type='button' id='#{film.id}'  class='' /></form></td><tr>"
+        """<tr id='#{film.id}_row'>
+            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_title">#{values.title}</a></td>
+            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_director">#{values.director}</a></td>
+            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_year">#{values.year}</a></td>
+            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_runtime">#{values.runtime}</a></td>
+            <td><a href="#" data-type="text" data-pk="1"  data-title="Enter username" id="#{film.id}_fsk">#{values.fsk}</a></td>
+            <td><form><button  id='#{film.id}'  class='' ><span class="ui-icon 	ui-icon-trash"></span></button><button  id='#{film.id}_saverow'  class='' ><span class="ui-icon ui-icon-disk"></span></button></form></td><tr>"""
     # events
+    initXEditableFields: ->
+        $.fn.editable.defaults.mode = 'inline'
+        for film in @filmList.getCollection()
+            $("#"+film.id+"_title").editable()
+            $("#"+film.id+"_director").editable()
+            $("#"+film.id+"_year").editable()
+            $("#"+film.id+"_runtime").editable()
+            $("#"+film.id+"_fsk").editable()
     addDeleteEvents:  ->
         # Example for in Loop (over arrays)
         for film in @filmList.getCollection()
@@ -159,4 +174,7 @@ dialogOptions={
 }
 $("#dialog-invalid-input").dialog dialogOptions
 $("#dialog-already-exist").dialog dialogOptions
+
+$.fn.editable.defaults.mode = 'inline'
+$('#username').editable()
 #$("#contentData").selectable()

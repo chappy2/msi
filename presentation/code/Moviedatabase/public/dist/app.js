@@ -73,7 +73,7 @@ FilmList = (function() {
       results = [];
       for (i = 0, len = ref.length; i < len; i++) {
         film = ref[i];
-        if (film.id === ids) {
+        if (film.id !== ids) {
           results.push(film);
         }
       }
@@ -162,13 +162,30 @@ FilmListView = (function() {
     $(this.tbodyData).empty();
     $(this.tbodyData).append(trString.join());
     this.addDeleteEvents();
+    this.initXEditableFields();
     return this;
   };
 
   FilmListView.prototype.renderFilm = function(film) {
     var values;
     values = film.attributes;
-    return "<tr id='" + film.id + "_row'><td>" + values.title + "</td><td>" + values.director + "</td><td>" + values.year + "</td><td>" + values.runtime + "</td><td>" + values.fsk + "</td><td><form><input type='button' id='" + film.id + "'  class='' /></form></td><tr>";
+    return "<tr id='" + film.id + "_row'>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_title\">" + values.title + "</a></td>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_director\">" + values.director + "</a></td>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_year\">" + values.year + "</a></td>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_runtime\">" + values.runtime + "</a></td>\n<td><a href=\"#\" data-type=\"text\" data-pk=\"1\"  data-title=\"Enter username\" id=\"" + film.id + "_fsk\">" + values.fsk + "</a></td>\n<td><form><button  id='" + film.id + "'  class='' ><span class=\"ui-icon 	ui-icon-trash\"></span></button><button  id='" + film.id + "_saverow'  class='' ><span class=\"ui-icon ui-icon-disk\"></span></button></form></td><tr>";
+  };
+
+  FilmListView.prototype.initXEditableFields = function() {
+    var film, i, len, ref, results;
+    $.fn.editable.defaults.mode = 'inline';
+    ref = this.filmList.getCollection();
+    results = [];
+    for (i = 0, len = ref.length; i < len; i++) {
+      film = ref[i];
+      $("#" + film.id + "_title").editable();
+      $("#" + film.id + "_director").editable();
+      $("#" + film.id + "_year").editable();
+      $("#" + film.id + "_runtime").editable();
+      results.push($("#" + film.id + "_fsk").editable());
+    }
+    return results;
   };
 
   FilmListView.prototype.addDeleteEvents = function() {
@@ -264,3 +281,7 @@ dialogOptions = {
 $("#dialog-invalid-input").dialog(dialogOptions);
 
 $("#dialog-already-exist").dialog(dialogOptions);
+
+$.fn.editable.defaults.mode = 'inline';
+
+$('#username').editable();
