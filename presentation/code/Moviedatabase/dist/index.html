@@ -8,11 +8,6 @@
 		font-family: "Trebuchet MS", sans-serif;
 		background-color:#cdc3b7;
 	}
-	  #feedback { font-size: 1.4em; }
-  #contentData .ui-selecting { background: #FECA40; }
-  #contentData .ui-selected { background: #F39814; color: white; }
-  #contentData { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-  #contentData li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
   button {
   	width: 24px;
   	height: 24px;
@@ -66,6 +61,54 @@
 	select {
 		width: 200px;
 	}
+	#sortButtons > th > a  {
+		display: inline-block;
+		text-align: left !important;
+		padding-left: 5px;
+		position:relative;
+		width:100%;
+	}
+	#sortButtons > th > a > span {
+		display:inline-block;
+		min-width: 16px !important;
+		position:absolute;
+		right: 5px;
+		top: 7px !important;
+	}
+	.ui-dialog .ui-dialog-buttonset {
+		width:100% !important;
+	}
+	.ui-dialog .ui-dialog-buttonset .ui-button {
+    font-size: 10px;
+    width:48% !important;
+    margin:1%;
+    padding:0;
+}
+	/* Editable anpassen */
+	.editable {
+		border: none !important;
+		
+		color: inherit !important;
+	}
+	.editableform  {
+		position: relative;
+		z-index:10 !important;
+	}
+	.editableform>*{
+		position: absolute;
+		top: -13px;
+		background-color: rgba(205, 195, 183, 0.75);
+		border:2px solid rgba(205, 195, 183, 0.8);
+		
+	}
+	input {
+		border: 2px solid #efefef !important;
+		background-color: rgba(205, 195, 183, 0.75);
+	}
+	#contentData> tr:nth-child(even) {
+    	background: #f1f1f1;
+	}
+	
 	</style>
     </head>
     <body>
@@ -74,11 +117,11 @@
 		<table id="MovieTable" class="ui-widget ui-helper-clearfix">
 			<thead class="ui-state-default ui-corner-all" >
 				<tr id="sortButtons">
-					<th><a href="javascript: chooseAlgorithmAndSort('title');" id="sortTitle" name="title">Title</a></th>
-					<th><a href="javascript: chooseAlgorithmAndSort('director');" id="sortDirector" name="director">Director</a></th>
-					<th><a href="javascript: chooseAlgorithmAndSort('year');" id="sortYear" name="year">Year</a></th>
-					<th><a href="javascript: chooseAlgorithmAndSort('runtime');" id="sortRuntime" name="runtime">Runtime</a></th>
-					<th ><a href="javascript: chooseAlgorithmAndSort('fsk');" id="sortfsk" name="fsk">FSK</a></th>
+					<th><a href="#" id="sortTitle" >Title <span></span></a></th>
+					<th><a href="#" id="sortDirector" >Director <span></span></a></th>
+					<th><a href="#" id="sortYear" >Year <span></span></a></th>
+					<th><a href="#" id="sortRuntime" >Runtime <span></span></a></th>
+					<th><a href="#" id="sortfsk" >FSK <span></span></a></th>
 					<th></th>
 				</tr>
 			
@@ -89,18 +132,18 @@
 					<td><input id="year" type="text" value=""></td>
 					<td><input id="runtime" type="text" value=""></td>
 					<td ><input id="fsk" type="text" value="" style="width:100px"></td>
-					<td><button  id='save-table'  class='ui-button ui-corner-all ui-widget ui-button-icon-only' ><span class="ui-icon ui-icon-disk"></span></button><button  id='create-film'  class='ui-button ui-corner-all ui-widget ui-button-icon-only' ><span class="ui-icon ui-icon-plus"></span></button></td>
+					<td>
+						<button  id='save-table'  class='ui-button ui-corner-all ui-widget ui-button-icon-only' >
+							<span class="ui-icon ui-icon-disk"></span>
+						</button>
+						<button  id='create-film'  class='ui-button ui-corner-all ui-widget ui-button-icon-only' >
+							<span class="ui-icon ui-icon-plus"></span>
+						</button>
+					</td>
 				</tr>
 				</form></tbody>
 			<tbody id="contentData" >
-		<tr >
-					<td >titel</td>
-					<td>drector</td>
-					<td>year</td>
-					<td>runtime</td>
-					<td>fsk </td>
-					<td class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-trash"></span></td>
-				</tr>
+	
 			</tbody>
 		</table>
 		<div id="dialog-invalid-input" title="Invalid Input">
@@ -108,6 +151,10 @@
 </div>
 <div id="dialog-already-exist" title="Movie already exists">
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>A movie with this title and year alredy exists.</p>
+</div>
+<div id="dialog-eidtable-not-saved" title="Unsaved Data">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Your changes will be lost after this action.</p>
+  	
 </div>
 	</div>
         <script src="external/jquery/jquery.js"></script>

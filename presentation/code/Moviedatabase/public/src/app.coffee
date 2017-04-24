@@ -1,18 +1,7 @@
-###
-Client app Moviedatabase
-Collection: gets Data from Server (sqllite database)
-functions:
-    - create
-    - update
-    - delete
-Model:
-    - instance of collection
-        - validate
-        - create
-        - destroy
-        ###
+re = new RegExp(/[ \?]/, 'g');
+
 removeSpace= (input) ->
-    input.replace " ",""
+    input.replace(re, '');
 
 class Film
     # values as object {year:2001,...}
@@ -22,7 +11,7 @@ class Film
         if success
             @id=removeSpace values.title + values.year
     validate: (values)->
-        # if true then set attributes
+        # TODO
         true
     setAttributes: (values) ->
         if @validate values
@@ -36,42 +25,63 @@ class FilmList
         @storageName='demoMoviedatabaseCollection'
         @fetch()
         @
-    newFilm: (values) ->
+    newFilm: (values,callback) ->
         futureId=removeSpace values.title + values.year
         checkExisting=@getFilm(futureId)
         if not checkExisting? or checkExisting.length>=1
+            callback?()
             return false
         elem=new Film(values)
         @collection.push elem
-        @save()
+        @save(callback)
         true
-    removeFilm: (ids) ->
+    removeFilm: (ids,callback) ->
         @collection = (film for film in @collection when film.id != ids)
-        @save()
+        @save(callback)
     getFilm:(ids) -> 
         result=(film for film in @collection when film.id == ids)
         result
     getCollection: ->
         @collection
-    # route noch nicht da
-    fetch: -> 
+    fetch: (callback)-> 
         temp=localStorage[@storageName]
         # check if empty, otherwise fill one element
         if not temp?
-            console.log 'no data in storage'
             @collection=[]
             @newFilm {year:2018,title:'le movie',director:'derpington',fsk:'18',runtime:'2011-2015'}
          else 
             @collection=JSON.parse temp
-    save: ->
+        callback?()
+    save: (callback)->
         localStorage[@storageName]=JSON.stringify @getCollection()
+        callback?()
     updateFilm: (id,attribut,value) ->
         films=@getFilm id
         films[0].attributes[attribut]=value
         films[0].id=removeSpace films[0].attributes.title+films[0].attributes.year
+    sort: (attribut,sorting)->
+        @sorted={attribut,sorting}
+        asc=(a,b)-> 
+            # Example for JavaScript Function Scope (Classes are compiled to Functions in CoffeeScript)
+            if a.attributes[attribut] < b.attributes[attribut] 
+                return -1
+            if a.attributes[attribut]  > b.attributes[attribut] 
+                return 1
+            0
+        desc=(a,b)-> 
+            if a.attributes[attribut] > b.attributes[attribut] 
+                return -1
+            if a.attributes[attribut]  < b.attributes[attribut] 
+                return 1
+            0
+        if sorting is "asc"
+            @collection=@collection.sort(asc)
+        else
+            @collection=@collection.sort(desc)
 
 class FilmListView
     constructor: (filmList)->
+        # DOM Ids and classes
         @inputDirector='#director'
         @inputFsk= '#fsk'
         @inputTitle='#title'
@@ -81,7 +91,13 @@ class FilmListView
         @buttonSave='#save-table'
         @buttonCreate='#create-film'
         @classNotSaved='.editable-unsaved'
-        
+        @aSortTitle='#sortTitle'
+        @aSortDirector='#sortDirector'
+        @aSortFsk='#sortfsk'
+        @aSortYear='#sortYear'
+        @aSortRuntime='#sortRuntime'
+        # state
+        @sorted=["",""]
         @filmList=filmList
         
         # add callback for fetch, an render when done
@@ -89,43 +105,75 @@ class FilmListView
         @render()
         # Example for fat arrow => binding
         $(@inputFsk).on 'keydown',(event) =>
-            @createOnEnter event
+            #@createOnEnter event
+            @showDialogSave( @createOnEnter,event)
         $(@buttonCreate).on 'click',(event) =>
-            console.log "fired"
-            @createFilm event
+            @showDialogSave( @createFilm,event)
         $(@buttonSave).on 'click',(event) =>
-            @saveFilmList event
-       
-        # return this
+            @saveFilmList(event,@render)
+        $(@aSortTitle+","+@aSortDirector+","+@aSortYear+","+@aSortRuntime+","+@aSortFsk).on 'click',(event)=>
+            @showDialogSave( @sort,event)
+        # jquery ui initialization
+        dialogOptions={
+            autoOpen:false,
+            show:"blind",
+            hide:"blind", 
+            modal: true
+        }
+        $("#dialog-invalid-input").dialog dialogOptions
+        $("#dialog-already-exist").dialog dialogOptions
+        $("#dialog-eidtable-not-saved").dialog dialogOptions
+
+        $.fn.editable.defaults.mode = 'inline'
+        # TODO bzw FRAGE brauchen wir ein Beispiel für function chaining?
         @
-    findEventOnChangeEditable: -> 
-        $('edit').on 'save',(event) =>
-            console.log event
-    render: ->
+    render: =>
+        ###
+         render used as callback function (propagated trough FilmList localStorage interactions
+        ###
         # Example for Array Comprehension
         trString=(@renderFilm film for film in @filmList.getCollection())
         $(@tbodyData).empty()
         $(@tbodyData).append trString.join()
         @addDeleteEvents()
         @initXEditableFields()
-        $( "button" ).button();
-        
+        $( "button" ).button()
+        @renderSaveButton()
+        @renderSorting()
+    renderSorting:  ->
+        if @sorted[0] != "" and @sorted[1] != ""
+            $(".sort-asc,.sort-desc").each (k, v) =>
+                v.setAttribute "class",""
+                v.lastChild.setAttribute "class",""
+            # mark link as sorted
+            $(@sorted[0]).attr "class",@sorted[1]
+            # insert icon in a>span
+            iconClass="ui-icon ui-icon-caret-1-"
+            if @sorted[1] is "sort-asc"
+                iconClass=iconClass+"s"
+            else
+                iconClass=iconClass+"n"
+            $(@sorted[0]+">span").attr "class",iconClass
+    renderSaveButton: ->
         $('.editable').on 'click',(event) =>
-            console.log event
             $('div').on 'save',(event) =>
                 $(@buttonSave).button("enable")
-        $(@buttonSave).button("disable")      
-        @
+            $(@buttonSave).button("disable")
     renderFilm: (film)->
         values= film.attributes
-        # Example for String Interpolation with #{}
+        # Example for String Interpolation with #{} and multiline String definition
         """<tr id='#{film.id}_row'>
             <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_title">#{values.title}</a></td>
             <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_director">#{values.director}</a></td>
             <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_year">#{values.year}</a></td>
             <td><a href="#" data-type="text"  data-pk="#{film.id}"  data-title="Enter username" id="#{film.id}_runtime">#{values.runtime}</a></td>
             <td><a href="#" data-type="text"  data-pk="#{film.id}"   data-title="Enter username" id="#{film.id}_fsk">#{values.fsk}</a></td>
-            <td><form><button  id='#{film.id}'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' ><span class="ui-icon ui-icon-minus"></span></button></form></td><tr>"""
+            <td><form>
+                <button  id='#{film.id}'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' >
+                    <span class="ui-icon ui-icon-minus"></span>
+                </button>
+            </form></td>
+        </tr>"""
     initXEditableFields: ->
         $.fn.editable.defaults.mode = 'inline'
         for film in @filmList.getCollection()
@@ -138,7 +186,8 @@ class FilmListView
         # Example for in Loop (over arrays)
         for film in @filmList.getCollection()
             $("#"+film.id).on 'click',(event) =>
-                @deleteFilm event
+                @deleteFilm event,@render 
+        
     checkInputFields: (values)->
         isNotEmpty=true
         # Example of for loop over Object
@@ -148,6 +197,7 @@ class FilmListView
                 isNotEmpty=false
         isNotEmpty
     readInputFields: ->
+        # Example Javascript Ex Nilho Object Creation
         values={}
         values.title =$(@inputTitle).val()
         values.director =$(@inputDirector).val()
@@ -155,48 +205,63 @@ class FilmListView
         values.runtime =$(@inputRuntime).val()
         values.fsk =$(@inputFsk).val()
         values
-    createFilm: (event) ->
+    createFilm: (event,callback) ->
         values=@readInputFields()
         valid=@checkInputFields values
         if  valid
-            created=@filmList.newFilm values
+            created=@filmList.newFilm values,callback
             if not created
                 $("#dialog-already-exist").dialog("open")
-            else
-                @render()
         else
             $("#dialog-invalid-input").dialog("open")
-    createOnEnter:(event) ->
+        @
+    createOnEnter:(event,callback) ->
         if event.keyCode == 13
-            @createFilm()
-    deleteFilm:(event) ->
-        @filmList.removeFilm event.currentTarget.id
-        $("#"+event.currentTarget.id+"_row").remove()
-    saveFilmList: (event)->
+            @createFilm(event,callback)
+    deleteFilm:(event,callback) ->
+        @filmList.removeFilm event.currentTarget.id,callback
+        @
+    saveFilmList: (event,callback)->
         $(@classNotSaved).each (k, v) =>
+            # id of eidtable data is film.id_attributKey, value is innerText of v
+            # eg <a id="exampleId1997_director" ...>the edited value</a>
             newV=v.id.split "_"
             @filmList.updateFilm newV[0],newV[1],v.innerText
-        @filmList.save()
-        @render()
-    sort: ->
-        true
-
-
-
+        @filmList.save(callback)
+        @
+    sort: (event,callback) ->
+        sorting="asc"
+        # Get attribut name to sort after from a id
+        val=event.currentTarget.id.replace "sort",""
+        val=val.toLowerCase()
+        # check if this attribut has been sorted before
+        if @sorted[0] is '#'+event.currentTarget.id
+            if @sorted[1] is "sort-"+sorting
+                sorting="desc"
+        # sort collection, keep sorting information and render
+        @filmList.sort val,sorting
+        @sorted=['#'+event.currentTarget.id,"sort-"+sorting]
+        # callback invoked here. No localStorage interaktion. Parameter needed, otherwise showDialogSave can't call this function.
+        callback?()
+        @
+    isDataSaved:->
+        $('.editable-unsaved').length <= 0
+    showDialogSave: (@arg,event) ->
+        if not @isDataSaved()
+            dynamicButton= {
+                "Save and continue":  => 
+                    @saveFilmList(event) # callback render here not needed
+                    @arg(event,@render)
+                    $("#dialog-eidtable-not-saved").dialog "close"         ,
+                "No Save and continue":  => 
+                    @arg(event,@render)
+                    $("#dialog-eidtable-not-saved").dialog "close"  
+            }
+            $("#dialog-eidtable-not-saved").dialog "option","buttons",dynamicButton
+            $("#dialog-eidtable-not-saved").dialog "open"
+        else
+            @arg(event,@render)
+            
 filmList=new FilmList()
 app=new FilmListView(filmList)
-app.render()
-# init jquery ui stuff..
-# todo refactor this
-dialogOptions={
-    autoOpen:false,
-    show:"blind",
-    hide:"blind", 
-    modal: true
-}
-$("#dialog-invalid-input").dialog dialogOptions
-$("#dialog-already-exist").dialog dialogOptions
 
-
-$.fn.editable.defaults.mode = 'inline'
-#$("#contentData").selectable()
