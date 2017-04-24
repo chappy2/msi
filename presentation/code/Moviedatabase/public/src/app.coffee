@@ -81,6 +81,7 @@ class FilmList
 
 class FilmListView
     constructor: (filmList)->
+        # DOM Ids and classes
         @inputDirector='#director'
         @inputFsk= '#fsk'
         @inputTitle='#title'
@@ -95,7 +96,7 @@ class FilmListView
         @aSortFsk='#sortfsk'
         @aSortYear='#sortYear'
         @aSortRuntime='#sortRuntime'
-        
+        # state
         @sorted=["",""]
         @filmList=filmList
         
@@ -124,7 +125,7 @@ class FilmListView
         $("#dialog-eidtable-not-saved").dialog dialogOptions
 
         $.fn.editable.defaults.mode = 'inline'
-        # return this
+        # TODO bzw FRAGE brauchen wir ein Beispiel für function chaining?
         @
     render: =>
         ###
@@ -196,6 +197,7 @@ class FilmListView
                 isNotEmpty=false
         isNotEmpty
     readInputFields: ->
+        # Example Javascript Ex Nilho Object Creation
         values={}
         values.title =$(@inputTitle).val()
         values.director =$(@inputDirector).val()
@@ -221,6 +223,8 @@ class FilmListView
         @
     saveFilmList: (event,callback)->
         $(@classNotSaved).each (k, v) =>
+            # id of eidtable data is film.id_attributKey, value is innerText of v
+            # eg <a id="exampleId1997_director" ...>the edited value</a>
             newV=v.id.split "_"
             @filmList.updateFilm newV[0],newV[1],v.innerText
         @filmList.save(callback)
@@ -237,6 +241,7 @@ class FilmListView
         # sort collection, keep sorting information and render
         @filmList.sort val,sorting
         @sorted=['#'+event.currentTarget.id,"sort-"+sorting]
+        # callback invoked here. No localStorage interaktion. Parameter needed, otherwise showDialogSave can't call this function.
         callback?()
         @
     isDataSaved:->
@@ -245,7 +250,7 @@ class FilmListView
         if not @isDataSaved()
             dynamicButton= {
                 "Save and continue":  => 
-                    @saveFilmList(event,@render)
+                    @saveFilmList(event) # callback render here not needed
                     @arg(event,@render)
                     $("#dialog-eidtable-not-saved").dialog "close"         ,
                 "No Save and continue":  => 
