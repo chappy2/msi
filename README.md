@@ -57,21 +57,21 @@ localhost:5000
 ```
 
 ### TODO
- - Beschrebung für Moviedatabase, run cake befehle
- - reveal-in- ... fehler mit class beheben
- - intsallationsschritte für node js hier aufnehmen
- - jade für präsi: pro Kapitel eine html datei
- - fehler moviedatabase: edit save liefert undefined, disble save button raus, class View
- - kommentare moviedatabase (nicht dringend)
- - classen in verschiedene dateien, geht das mitlerweile?
+- [ ] Beschrebung für Moviedatabase, run cake befehle
+- [ ] reveal-in- ... fehler mit class beheben
+- [ ] intsallationsschritte für node js hier aufnehmen
+- [ ] jade für präsi: pro Kapitel eine html datei
+- [ ] fehler moviedatabase: edit save liefert undefined, disble save button raus, class View
+- [ ] kommentare moviedatabase (nicht dringend)
+- [ ] classen in verschiedene dateien, geht das mitlerweile?
 #### Inhalte
 bis Dienstag
- - Einleitung, vortiel nachteile - aw
- - Kapitel in Stichpunkten (genauer) , aw,sss
- - Timeline sss, cs,js, ecma, node, browser?
- - für besipiele filtern, nur cs features, keine js features, sss
- - Grundgerüst präsi: kapitel
- - dropbox quellenliste, sss 1x, aw 0x
+- [ ] Einleitung, vortiel nachteile - aw
+- [ ] Kapitel in Stichpunkten (genauer) , aw,sss
+- [ ] Timeline sss, cs,js, ecma, node, browser?
+- [ ] für besipiele filtern, nur cs features, keine js features, sss
+- [ ] Grundgerüst präsi: kapitel
+- [ ] dropbox quellenliste, sss 1x, aw 0x
 Fragen für dozent
-  - Gliederung 
+- [ ] Gliederung 
 
