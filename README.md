@@ -27,9 +27,13 @@ sudo apt-get install coffeescript
 
 #### Nodejs und Dependencies
 Node js: https://nodejs.org/en/download/package-manager/
-Version _v4.6.2_ benutzen.
+node js mit nvm installieren. 
+```
+nvm install v4.6.2
+```
+nvm Version _v4.6.2_ benutzen.
 
-Im ordner *msi/presentation* 
+Im ordner *msi/presentation* und *reveal-run-in-terminal* und *msi/presentation/code/Moviedatabase*
 ```
 npm install
 ```
@@ -40,6 +44,12 @@ node app.js
 ```
 
 Je nach *msi/presentation/config/default.json* Einstellung erreichbar unter:
+Wenn keine config benutzt werden soll dann
+
+```
+app.listen(5000,"localhost")
+```
+verwenden statt.
 ```
 localhost:5000
 ```
