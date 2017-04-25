@@ -348,8 +348,8 @@ FilmListView = (function() {
       return function(k, v) {
         var newV;
         newV = v.id.split("_");
-        console.log(v.innerText);
-        return _this.filmList.updateFilm(newV[0], newV[1], v.innerText);
+        console.log(v.innerHTML);
+        return _this.filmList.updateFilm(newV[0], newV[1], v.innerHTML);
       };
     })(this));
     this.filmList.save(callback);

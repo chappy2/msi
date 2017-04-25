@@ -220,8 +220,8 @@ class FilmListView
             # id of eidtable data is film.id_attributKey, value is innerText of v
             # eg <a id="exampleId1997_director" ...>the edited value</a>
             newV=v.id.split "_"
-            console.log v.innerText
-            @filmList.updateFilm newV[0],newV[1],v.innerText
+            console.log v.innerHTML
+            @filmList.updateFilm newV[0],newV[1],v.innerHTML
         @filmList.save(callback)
         @
     sort: (event,callback) ->
