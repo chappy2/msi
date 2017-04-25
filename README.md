@@ -38,11 +38,14 @@ Im ordner *msi/presentation* und *reveal-run-in-terminal* und *msi/presentation/
 npm install
 ```
 
-Server dann starten mit
+Präsentation dann starten mit im *presentation* Ordner
 ```
 node app.js
 ```
-
+Demo starten mit im *presentation/code/Moviedatabase* Ordner
+```
+node ./dist/app.js
+```
 Je nach *msi/presentation/config/default.json* Einstellung erreichbar unter:
 Wenn keine config benutzt werden soll dann
 
