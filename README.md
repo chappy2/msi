@@ -53,11 +53,6 @@ Präsentation dann starten mit im *presentation* Ordner
 ```
 node app.js
 ```
-Demo starten mit im *presentation/code/Moviedatabase* Ordner
-```
-node ./dist/app.js
-```
-
 Je nach *msi/presentation/config/default.json* Einstellung erreichbar unter:
 Wenn keine config benutzt werden soll dann
 ```
@@ -77,6 +72,10 @@ symlink für cake: sudo ln -s /home/<path inside your home folder>/msi/presentat
 Für den Demo Server Code kann nun in *msi/presentation/code/Moviedatabase* und dem Client Code *msi/presentation/code/Moviedatabase/public* Ordner cake Befehle, zum build von den jeweiligen *./src/.coffee* Dateien ausgeführt werden.
 ```
 cake build
+```
+Demo starten mit im *presentation/code/Moviedatabase* Ordner
+```
+node ./dist/app.js
 ```
 Auch hier kann der node.js Server über config eingestellt werden. Port soll hier 5001 sein.
 ```
