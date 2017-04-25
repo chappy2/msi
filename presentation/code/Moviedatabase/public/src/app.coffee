@@ -3,6 +3,18 @@ re = new RegExp(/[ \?]/, 'g');
 removeSpace= (input) ->
     input.replace(re, '');
 
+class View
+    ###
+        Class View defines two methods
+            - render function: should be overwritten 
+            - logging function
+    ###
+    render: ->
+       console.log "View render called class View"
+    log: (value) ->
+        console.log value
+        
+
 class Film
     # values as object {year:2001,...}
     # Films are stored in localstorage, all functions are only for creation. JSON doesn't provide functions.
@@ -79,7 +91,7 @@ class FilmList
         else
             @collection=@collection.sort(desc)
 
-class FilmListView
+class FilmListView extends View
     constructor: (filmList)->
         # DOM Ids and classes
         @inputDirector='#director'
@@ -126,11 +138,15 @@ class FilmListView
 
         $.fn.editable.defaults.mode = 'inline'
         # TODO bzw FRAGE brauchen wir ein Beispiel für function chaining?
+        
         @
     render: =>
         ###
          render used as callback function (propagated trough FilmList localStorage interactions
+         it overrides the render function of the super class View
         ###
+        # Example of use of super class View function log
+        @log "render fired"
         # Example for Array Comprehension
         trString=(@renderFilm film for film in @filmList.getCollection())
         $(@tbodyData).empty()
@@ -220,7 +236,6 @@ class FilmListView
             # id of eidtable data is film.id_attributKey, value is innerText of v
             # eg <a id="exampleId1997_director" ...>the edited value</a>
             newV=v.id.split "_"
-            console.log v.innerHTML
             @filmList.updateFilm newV[0],newV[1],v.innerHTML
         @filmList.save(callback)
         @
