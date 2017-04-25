@@ -48,8 +48,15 @@ node ./dist/app.js
 ```
 Je nach *msi/presentation/config/default.json* Einstellung erreichbar unter:
 Wenn keine config benutzt werden soll dann
+```
+app.listen(5000,"localhost")
+```
+verwenden statt.
+```
+localhost:5000
+```
 
-###TODO
+### TODO
  - Beschrebung für Moviedatabase, run cake befehle
  - reveal-in- ... fehler mit class beheben
  - intsallationsschritte für node js hier aufnehmen
@@ -68,10 +75,3 @@ bis Dienstag
 Fragen für dozent
   - Gliederung 
 
-```
-app.listen(5000,"localhost")
-```
-verwenden statt.
-```
-localhost:5000
-```
