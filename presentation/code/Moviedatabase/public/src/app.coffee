@@ -138,7 +138,6 @@ class FilmListView
         @addDeleteEvents()
         @initXEditableFields()
         $( "button" ).button()
-        @renderSaveButton()
         @renderSorting()
     renderSorting:  ->
         if @sorted[0] != "" and @sorted[1] != ""
@@ -154,11 +153,6 @@ class FilmListView
             else
                 iconClass=iconClass+"n"
             $(@sorted[0]+">span").attr "class",iconClass
-    renderSaveButton: ->
-        $('.editable').on 'click',(event) =>
-            $('div').on 'save',(event) =>
-                $(@buttonSave).button("enable")
-            $(@buttonSave).button("disable")
     renderFilm: (film)->
         values= film.attributes
         # Example for String Interpolation with #{} and multiline String definition
@@ -226,6 +220,7 @@ class FilmListView
             # id of eidtable data is film.id_attributKey, value is innerText of v
             # eg <a id="exampleId1997_director" ...>the edited value</a>
             newV=v.id.split "_"
+            console.log v.innerText
             @filmList.updateFilm newV[0],newV[1],v.innerText
         @filmList.save(callback)
         @

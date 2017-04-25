@@ -234,7 +234,6 @@ FilmListView = (function() {
     this.addDeleteEvents();
     this.initXEditableFields();
     $("button").button();
-    this.renderSaveButton();
     return this.renderSorting();
   };
 
@@ -256,17 +255,6 @@ FilmListView = (function() {
       }
       return $(this.sorted[0] + ">span").attr("class", iconClass);
     }
-  };
-
-  FilmListView.prototype.renderSaveButton = function() {
-    return $('.editable').on('click', (function(_this) {
-      return function(event) {
-        $('div').on('save', function(event) {
-          return $(_this.buttonSave).button("enable");
-        });
-        return $(_this.buttonSave).button("disable");
-      };
-    })(this));
   };
 
   FilmListView.prototype.renderFilm = function(film) {
@@ -360,6 +348,7 @@ FilmListView = (function() {
       return function(k, v) {
         var newV;
         newV = v.id.split("_");
+        console.log(v.innerText);
         return _this.filmList.updateFilm(newV[0], newV[1], v.innerText);
       };
     })(this));
@@ -396,7 +385,7 @@ FilmListView = (function() {
       dynamicButton = {
         "Save and continue": (function(_this) {
           return function() {
-            _this.saveFilmList(event, _this.render);
+            _this.saveFilmList(event);
             _this.arg(event, _this.render);
             return $("#dialog-eidtable-not-saved").dialog("close");
           };
