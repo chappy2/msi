@@ -5,6 +5,7 @@ Läuft in Firefox Version 53.x. Probleme mit Version 44.0.2 (ubuntu).
 ## Installation
 Installation getestet für Ubuntu ab 14.04.
 ### Konfiguration
+Ignorier das hier. Standardmäßig auf localhost.
 Datei *msi/presentation/config/defaultExample.json* kopieren und umbenennen in *default.json*. Je nach Umgebung die Werte anpassen.
 
 ### Abhängigkeiten ohne npm
@@ -54,11 +55,6 @@ Präsentation dann starten mit im *presentation* Ordner
 node app.js
 ```
 Je nach *msi/presentation/config/default.json* Einstellung erreichbar unter:
-Wenn keine config benutzt werden soll dann
-```
-app.listen(5000,"localhost")
-```
-verwenden statt.
 ```
 localhost:5000
 ```
@@ -67,7 +63,7 @@ Demo befindet sich im *msi/presentation/code/Moviedatabase* Ordner.
 Hier ist eine Cakefile hinterlegt (build tool von CoffeeScript).
 Hier muss ein Symlink hin:
 ```
-symlink für cake: sudo ln -s /home/<path inside your home folder>/msi/presentation/code/Moviedatabase/node_modules/coffee-script/bin/cake /usr/local/bin/cake 
+sudo ln -s /home/<path inside your home folder>/msi/presentation/code/Moviedatabase/node_modules/coffee-script/bin/cake /usr/local/bin/cake 
 ```
 Für den Demo Server Code kann nun in *msi/presentation/code/Moviedatabase* und dem Client Code *msi/presentation/code/Moviedatabase/public* Ordner cake Befehle, zum build von den jeweiligen *./src/.coffee* Dateien ausgeführt werden.
 ```
