@@ -86,14 +86,14 @@ localhost:5001
 - [x] disble save button raus
 - [x] class View
 - [ ] kommentare moviedatabase (nicht dringend)
-- [ ] prod vm neuinstallation testen
+- [x] prod vm neuinstallation testen
 - [x] classen in verschiedene dateien, geht das mitlerweile? nein geht nicht. man könnte requirejs einbauen
 #### Inhalte
 bis Dienstag
 - [x] Einleitung, vortiel nachteile - aw
-- [ ] Kapitel in Stichpunkten (genauer) , aw,sss
-- [ ] Timeline sss, cs,js, ecma, node, browser?
+- [x] Kapitel in Stichpunkten (genauer) , aw,sss
+- [x] Timeline sss, cs,js, ecma, node, browser?
 - [x] für besipiele filtern, nur cs features, keine js features, sss
-- [ ] Grundgerüst präsi: kapitel
+- [x] Grundgerüst präsi: kapitel
 - [x] dropbox quellenliste, sss 1x, aw 0x
 
