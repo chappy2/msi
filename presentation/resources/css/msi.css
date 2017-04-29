@@ -2,6 +2,7 @@
 color scheme:
 FF7400	BF7130	A64B00	FF9640	FFB273
 */
+
 .msi-slides  {
     text-align:left;
     padding-left: 10% !important;
@@ -42,4 +43,15 @@ ol.msi-agenda>ul {
 .msi-layout-item-80 {
     display:table-cell;
     width: 80%
+}
+iframe.timeline {
+    width: 100%;
+    min-height: 800px;
+} 
+.timeline-slide {
+    width:100% !important;
+    padding-left:0 !important;
+}
+.timeline-slide h2 {
+    padding-left:10% !important;
 }
