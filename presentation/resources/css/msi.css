@@ -1,86 +1,45 @@
-.msi-icons-s {
-    color: pink!important;
-    display:inline-block;
-    width:32px;
-    height:32px;
-    background-repeat: no-repeat;
-    background-position:center;
-    background-size:32px 32px;
+/*
+color scheme:
+FF7400	BF7130	A64B00	FF9640	FFB273
+*/
+.msi-slides  {
+    text-align:left;
+    padding-left: 10% !important;
+}
+.msi-slides > h2 {
+    color:#A64B00 !important;
 }
 
-.msi-icons-m {
-    display:inline-block;
-    width:64px;
-    height:64px;
-    background-repeat: no-repeat;
-    background-position:center;
-    background-size:64px 64px;
+ol.msi-agenda {
+    font-size: 40px;
 }
-.msi-icons-l {
-    display:inline-block;
-    width:128px;
-    height:128px;
-    background-repeat: no-repeat;
-    background-position:center;
-    background-size:128px 128px;
-}
-/* linecons-free-vector-icons-pack */
-.msi-icons-bubble {
-     background-image: url('../img/linecons-free-vector-icons-pack/Bubble, chat, comment, speech, talk icon.svg');
-}
-.msi-icons-bulb {
-     background-image: url('../img/linecons-free-vector-icons-pack/Buld, idea, light icon.svg');
-}
-.msi-icons-cup {
-     background-image: url('../img/linecons-free-vector-icons-pack/Cup icon.svg');
-}
-.msi-icons-display {
-     background-image: url('../img/linecons-free-vector-icons-pack/Display, monitor, screen, video icon.svg');
-}
-.msi-icons-edit {
-     background-image: url('../img/linecons-free-vector-icons-pack/Edit, pen, pencil, write icon.svg');
-}
-.msi-icons-megaphone {
-     background-image: url('../img/linecons-free-vector-icons-pack/Megaphone icon.svg');
-}
-.msi-icons-settings {
-     background-image: url('../img/linecons-free-vector-icons-pack/Settings icon.svg');
-}
-.msi-icons-star {
-     background-image: url('../img/linecons-free-vector-icons-pack/Star icon.svg');
-}
-.msi-icons-study {
-     background-image: url('../img/linecons-free-vector-icons-pack/Study icon.svg');
-}
-.msi-icons-user {
-     background-image: url('../img/linecons-free-vector-icons-pack/User icon.svg');
+ol.msi-agenda>ul {
+    font-size:30px;
 }
 
-/* Web browsers */
-.msi-icons-ie {
-     background-image: url('../img/Web browsers/16 colors, browser, internet explorer, icon.png');
+.msi-layout{
+    display: table;
 }
-.msi-icons-safari {
-     background-image: url('../img/Web browsers/Apple, browser, compass, safari icon.png');
+.msi-layout-item {
+    display: table-cell;
 }
-.msi-icons-chrome {
-     background-image: url('../img/Web browsers/Browser, chrome, google, logo icon.png');
+.msi-layout-item-20 {
+    display:table-cell;
+    width: 20%
 }
-.msi-icons-earth {
-     background-image: url('../img/Web browsers/Browser, earth icon.png');
+.msi-layout-item-30 {
+    display:table-cell;
+    width: 30%
 }
-.msi-icons-mozilla {
-     background-image: url('../img/Web browsers/Browser, earth, flock, mozilla, theworld icon.png');
+.msi-layout-item-50 {
+    display:table-cell;
+    width: 50%
 }
-.msi-icons-maxthon {
-     background-image: url('../img/Web browsers/Browser, maxthon icon.png');
+.msi-layout-item-60 {
+    display:table-cell;
+    width: 60%
 }
-.msi-icons-navigator {
-     background-image: url('../img/Web browsers/Browser, navigator, netscape icon.png');
-}
-.msi-icons-opera {
-     background-image: url('../img/Web browsers/Browser, opera icon.png');
-}
-.msi-icons-firefox {
-     background-image: url('../img/Web browsers/Firefox, mozilla icon.png');
+.msi-layout-item-80 {
+    display:table-cell;
+    width: 80%
 }

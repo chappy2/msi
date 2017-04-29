@@ -28,5 +28,5 @@ app.use(express.static(revealJsPath));
 
 
 
-//app.listen(config.Server.Port,config.Server.Ip);
-app.listen(5000,"localhost");
+app.listen(config.Server.Port,config.Server.Ip);
+//app.listen(5000,"localhost");
