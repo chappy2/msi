@@ -1,0 +1,15 @@
+extend layout
+
+block slides
+
+    // hier die folien, die in ./slides/ als html file definiert sind, einbinden
+    include ./slides/titel.html
+    include ./slides/agenda.html
+    // kapitel hier rein
+    // vor jedem kapitel eine section. somit geht die nächste folie nach unten
+    section
+        include ./slides/kapitel/testkapitel.html
+    
+    // demo zwischendrin iwann
+    include ./slides/demo.html
+    include ./slides/ende.html
