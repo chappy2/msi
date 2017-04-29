@@ -90,12 +90,10 @@ localhost:5001
 - [x] classen in verschiedene dateien, geht das mitlerweile? nein geht nicht. man könnte requirejs einbauen
 #### Inhalte
 bis Dienstag
-- [ ] Einleitung, vortiel nachteile - aw
+- [x] Einleitung, vortiel nachteile - aw
 - [ ] Kapitel in Stichpunkten (genauer) , aw,sss
 - [ ] Timeline sss, cs,js, ecma, node, browser?
-- [ ] für besipiele filtern, nur cs features, keine js features, sss
+- [x] für besipiele filtern, nur cs features, keine js features, sss
 - [ ] Grundgerüst präsi: kapitel
-- [ ] dropbox quellenliste, sss 1x, aw 0x
-Fragen für dozent
-- [ ] Gliederung 
+- [x] dropbox quellenliste, sss 1x, aw 0x
 
