@@ -9,7 +9,8 @@
     "config": "^1.25.1",
     "express": "^4.15.2",
     "path": "^0.12.7",
-    "use-strict": "^1.0.1"
+    "use-strict": "^1.0.1",
+    "jade":"^1.11.0"
   },
   "devDependencies": {},
   "scripts": {},
