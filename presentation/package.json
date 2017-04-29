@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Server code for msi presentation",
   "main": "app.js",
+  "private": "true",
   "dependencies": {
     "coffee-script": "^1.12.4",
     "config": "^1.25.1",

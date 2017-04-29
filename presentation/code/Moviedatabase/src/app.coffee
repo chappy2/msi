@@ -10,4 +10,5 @@ app.use express.static clientApp
 app.use express.static customDepend
 app.use express.static bowerDepend
 app.use express.static __dirname
-app.listen config.Server.Port,config.Server.Ip
+app.listen 5001,"localhost"
+#app.listen config.Server.Port,config.Server.Ip
