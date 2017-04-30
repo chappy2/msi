@@ -78,6 +78,7 @@ Auch hier kann der node.js Server über config eingestellt werden. Port soll hie
 localhost:5001
 ```
 ### TODO
+#### Fertige Todos
 - [x] Beschrebung für Moviedatabase, run cake befehle
 - [x] reveal-in- ... fehler mit class beheben. firefox version 44.0.2 ubuntu. Update auf version 53 -> gelöst.
 - [x] intsallationsschritte für node js hier aufnehmen
@@ -85,15 +86,20 @@ localhost:5001
 - [x] fehler moviedatabase: edit save liefert undefined
 - [x] disble save button raus
 - [x] class View
-- [ ] kommentare moviedatabase (nicht dringend)
 - [x] prod vm neuinstallation testen
 - [x] classen in verschiedene dateien, geht das mitlerweile? nein geht nicht. man könnte requirejs einbauen
-#### Inhalte
-bis Dienstag
+#### Neue Todos
+- [ ] kommentare moviedatabase (nicht dringend)
+- [ ] Beispiel aus docx in Quellcode übernehmen (removeCharakters)!
+- [ ] Termin mit dozent
+- [ ] Beispiel code für client als literate
+- [ ] Projekt sourcemaps bsp einbauen
+#### Inhalte bis Dienstag
 - [x] Einleitung, vortiel nachteile - aw
 - [x] Kapitel in Stichpunkten (genauer) , aw,sss
 - [x] Timeline sss, cs,js, ecma, node, browser?
 - [x] für besipiele filtern, nur cs features, keine js features, sss
 - [x] Grundgerüst präsi: kapitel
 - [x] dropbox quellenliste, sss 1x, aw 0x
+
 
