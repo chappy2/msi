@@ -1,6 +1,6 @@
 re = new RegExp(/[ \?]/, 'g');
 
-removeCharakters= (input) ->
+removeCharacters= (input) ->
     # re = new RegExp(/[ \?]/, 'g');
     console.log """ 
                 Leerzeichen und Fragezeichen 
@@ -27,7 +27,7 @@ class Film
     constructor: (values) ->
         success=@setAttributes values
         if success
-            @id=removeCharakters values.title + values.year
+            @id=removeCharacters values.title + values.year
     validate: (values)->
         # TODO
         true
@@ -44,7 +44,7 @@ class FilmList
         @fetch()
         @
     newFilm: (values,callback) ->
-        futureId=removeCharakters values.title + values.year
+        futureId=removeCharacters values.title + values.year
         checkExisting=@getFilm(futureId)
         if not checkExisting? or checkExisting.length>=1
             callback?()
@@ -76,7 +76,7 @@ class FilmList
     updateFilm: (id,attribut,value) ->
         films=@getFilm id
         films[0].attributes[attribut]=value
-        films[0].id=removeCharakterss films[0].attributes.title+films[0].attributes.year
+        films[0].id=removeCharacterss films[0].attributes.title+films[0].attributes.year
     sort: (attribut,sorting)->
         @sorted={attribut,sorting}
         asc=(a,b)-> 
