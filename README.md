@@ -89,11 +89,20 @@ localhost:5001
 - [x] prod vm neuinstallation testen
 - [x] classen in verschiedene dateien, geht das mitlerweile? nein geht nicht. man könnte requirejs einbauen
 #### Neue Todos
-- [ ] kommentare moviedatabase (nicht dringend)
-- [ ] Beispiel aus docx in Quellcode übernehmen (removeCharakters)!
-- [ ] Termin mit dozent
-- [ ] Beispiel code für client als literate
-- [ ] Projekt sourcemaps bsp einbauen
+- [ ] kommentare moviedatabase (nicht dringend) sss
+- [x] Beispiel aus docx in Quellcode übernehmen (removeCharakters)!
+- [x] Termin mit dozent
+- [x] Code ausführen geht nicht mehr sss
+- [x] Beispiel code für client als literate aw
+- [x] quiz erstellen
+- [ ] Projekt sourcemaps bsp einbauen sss
+- [ ] layout klassen fertig sss
+- [ ] Klassen sss
+- [ ] Sourcemaps sss
+- [ ] literate aw
+- [ ] zukunft einleitung aw
+- [ ] ecma 6. edition aw
+- [ ] cs version 2
 #### Inhalte bis Dienstag
 - [x] Einleitung, vortiel nachteile - aw
 - [x] Kapitel in Stichpunkten (genauer) , aw,sss
@@ -101,5 +110,10 @@ localhost:5001
 - [x] für besipiele filtern, nur cs features, keine js features, sss
 - [x] Grundgerüst präsi: kapitel
 - [x] dropbox quellenliste, sss 1x, aw 0x
+#### Fragen dozent
+- [ ] #seiten nur text? 
+- [ ] quiz ok?
+- [ ] gliederung ok? einleitung , fazit
+- [ ]  
 
 
