@@ -1,3 +1,3 @@
 greeting = (name) ->
 	"Hello #{name}!"
-console.log greeting "Derp"
+console.log greeting "World"

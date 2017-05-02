@@ -1,30 +1,42 @@
 extend layout
 
 block slides
-
+    //include ./slides/kapitel/testkapitel.html
     // hier die folien, die in ./slides/ als html file definiert sind, einbinden
     include ./slides/titel.html
+
+
     include ./slides/agenda.html
+
     // Einleitung
-    section
-        include ./slides/kapitel/einleitung/1_einstieg.html
-        include ./slides/kapitel/einleitung/2_historie.html
-        include ./slides/kapitel/einleitung/3_probleme.html
+
+    include ./slides/kapitel/einleitung/1_einstieg.html
+    include ./slides/kapitel/einleitung/2_historie.html
+    include ./slides/kapitel/einleitung/3_probleme.html
+
     // demo zwischendrin iwann
+
     include ./slides/demo.html
+
     // CoffeeScript
-    section
-        include ./slides/kapitel/cschapter/1_einstieg.html
-        include ./slides/kapitel/cschapter/2_compilerUndSyntax.html
-        include ./slides/kapitel/cschapter/3_klassen.html
-        include ./slides/kapitel/cschapter/4_literate.html
-        include ./slides/kapitel/cschapter/5_cakeSourcemaps.html
+
+    include ./slides/kapitel/cschapter/1_einstieg.html
+    include ./slides/kapitel/cschapter/2_compilerUndSyntax.html
+    include ./slides/kapitel/cschapter/3_klassen.html
+    include ./slides/kapitel/cschapter/4_literate.html
+    include ./slides/kapitel/cschapter/4_x_markdown.html
+    include ./slides/kapitel/cschapter/5_cakeSourcemaps.html
+    include ./slides/kapitel/cschapter/6_quiz.html
+  
     // Zukunft von CoffeeScript
-    section
-        include ./slides/kapitel/zukunftCoffeescript/1_einstieg.html
-    // Fazit
-    section
-        include ./slides/kapitel/fazit/1_einstieg.html
     
+    include ./slides/kapitel/zukunftCoffeescript/1_einstieg.html
+
+    // Fazit
+
+    include ./slides/kapitel/fazit/1_einstieg.html
+  
     
     include ./slides/ende.html
+    
+    
