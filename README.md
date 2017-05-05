@@ -98,11 +98,11 @@ localhost:5001
 - [ ] Projekt sourcemaps bsp einbauen sss
 - [ ] layout klassen fertig sss
 - [ ] Klassen sss
-- [ ] Sourcemaps sss
-- [ ] literate aw
+- [x] Sourcemaps sss
+- [x] literate aw
 - [ ] zukunft einleitung aw
-- [ ] ecma 6. edition aw
-- [ ] cs version 2
+- [x] ecma 6. edition aw
+- [x] cs version 2
 #### Inhalte bis Dienstag
 - [x] Einleitung, vortiel nachteile - aw
 - [x] Kapitel in Stichpunkten (genauer) , aw,sss
@@ -111,9 +111,8 @@ localhost:5001
 - [x] Grundgerüst präsi: kapitel
 - [x] dropbox quellenliste, sss 1x, aw 0x
 #### Fragen dozent
-- [ ] #seiten nur text? 
-- [ ] quiz ok?
-- [ ] gliederung ok? einleitung , fazit
-- [ ]  
+- [x] #seiten nur text? 
+- [x] quiz ok?
+- [x] gliederung ok? einleitung , fazit
 
 
