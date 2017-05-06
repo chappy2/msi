@@ -88,22 +88,6 @@ localhost:5001
 - [x] class View
 - [x] prod vm neuinstallation testen
 - [x] classen in verschiedene dateien, geht das mitlerweile? nein geht nicht. man könnte requirejs einbauen
-#### Neue Todos
-- [ ] kommentare moviedatabase (nicht dringend) sss
-- [x] Beispiel aus docx in Quellcode übernehmen (removeCharakters)!
-- [x] Termin mit dozent
-- [x] Code ausführen geht nicht mehr sss
-- [x] Beispiel code für client als literate aw
-- [x] quiz erstellen
-- [ ] Klassen sss
-- [x] Sourcemaps sss
-- [x] literate aw
-- [ ] zukunft einleitung aw
-- [ ] fazit
-- [ ] docco einfügen (nebensatz)
-- [x] ecma 6. edition aw
-- [x] cs version 2
-#### Inhalte bis Dienstag
 - [x] Einleitung, vortiel nachteile - aw
 - [x] Kapitel in Stichpunkten (genauer) , aw,sss
 - [x] Timeline sss, cs,js, ecma, node, browser?
@@ -111,6 +95,21 @@ localhost:5001
 - [x] Grundgerüst präsi: kapitel
 - [x] dropbox quellenliste, sss 1x, aw 0x
 - [x] folien
+- [x] Beispiel aus docx in Quellcode übernehmen (removeCharakters)!
+- [x] Termin mit dozent
+- [x] Code ausführen geht nicht mehr sss
+- [x] Beispiel code für client als literate aw
+- [x] quiz erstellen
+- [x] Sourcemaps sss
+- [x] literate aw
+- [x] ecma 6. edition aw
+- [x] cs version 2
+#### Neue Todos
+- [ ] Klassen sss
+- [ ] zukunft einleitung aw
+- [ ] fazit
+- [ ] docco einfügen (nebensatz)
+#### Inhalte bis Dienstag
 - [ ] klassen folien
 - [ ] task erklären
 - [ ] tasks folien
