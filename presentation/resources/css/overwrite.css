@@ -4,6 +4,15 @@ section[data-run-in-terminal] .container {
     background-color:black !important;
   
 }
+.reveal blockquote {
+    margin:0 !important;
+}
+.reveal table {
+    min-width:70%;
+    margin:0 !important;
+    border-collapse:inherit !important;
+}
+
 .progress {
     height: 8px !important;
 }
@@ -19,8 +28,8 @@ section[data-run-in-terminal] .container {
 
 /* Styles from reveal.js*/
 .reveal{
-       background-image: url('../img/linecons-free-vector-icons-pack/Cup icon.svg');
+      background-image: url('../img/logo/coffeescript.png');
     background-repeat: no-repeat;
-     background-size: 128px 120px;
+     background-size: 128px 128px;
      background-position: 50px 50px;
 }

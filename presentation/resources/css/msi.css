@@ -2,7 +2,34 @@
 color scheme:
 FF7400	BF7130	A64B00	FF9640	FFB273
 */
+.cover {
+    background-color:white;
+    height:600px;
+    width:200px;
+    position:absolute;
+    top:-200px;
+    left:-200px;
+}
+.msi-logo {
+     background-image: url('../img/logo/coffeescript.png');
+     display:inline-block;
+    width:300px;
+    height:300px;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size:300px 300px;
+    position: absolute;
+    top: 10%;
+    right:20%;
+}
 
+table.comsyn > thead > tr> th:last-of-type, table.comsyn > tbody > tr> td:last-of-type {
+    padding-left:15%;
+}
+.sourcem  {
+    display:inline-block;
+    margin-right:4% !important;
+}
 .msi-slides  {
     text-align:left;
     padding-left: 10% !important;

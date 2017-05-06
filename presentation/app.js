@@ -17,7 +17,7 @@ app.use(revealRunInTerminal({
 }));
 
 app.get('/', function (req, res) {
-  res.render('index')
+  res.render('index',config.Server)
 })
 
 let revealRunInTerminalPlugin = path.resolve(__dirname, '../reveal-run-in-terminal/static');
@@ -28,5 +28,5 @@ app.use(express.static(revealJsPath));
 
 
 
-//app.listen(config.Server.Port,config.Server.Ip);
-app.listen(5000,"localhost");
+app.listen(config.Server.Port,config.Server.Ip);
+//app.listen(5000,"localhost");
