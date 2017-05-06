@@ -95,12 +95,12 @@ localhost:5001
 - [x] Code ausführen geht nicht mehr sss
 - [x] Beispiel code für client als literate aw
 - [x] quiz erstellen
-- [ ] Projekt sourcemaps bsp einbauen sss
-- [ ] layout klassen fertig sss
 - [ ] Klassen sss
 - [x] Sourcemaps sss
 - [x] literate aw
 - [ ] zukunft einleitung aw
+- [ ] fazit
+- [ ] docco einfügen (nebensatz)
 - [x] ecma 6. edition aw
 - [x] cs version 2
 #### Inhalte bis Dienstag
@@ -110,6 +110,15 @@ localhost:5001
 - [x] für besipiele filtern, nur cs features, keine js features, sss
 - [x] Grundgerüst präsi: kapitel
 - [x] dropbox quellenliste, sss 1x, aw 0x
+- [x] folien
+- [ ] klassen folien
+- [ ] task erklären
+- [ ] tasks folien
+- [ ] speaker notes einfügen server 
+- [ ] repo extra für moviedatabase
+- [ ] readme mit erklärung
+- [ ] dokumentation einfügen
+- [ ] Projekt sourcemaps vorhanden
 #### Fragen dozent
 - [x] #seiten nur text? 
 - [x] quiz ok?
