@@ -109,10 +109,10 @@ localhost:5001
 - [ ] fazit
 - [ ] docco einfügen (nebensatz)
 #### Inhalte bis Dienstag
-- [ ] Klassen sss
-- [ ] klassen folien
-- [ ] task erklären
-- [ ] tasks folien
+- [x] Klassen sss
+- [x] klassen folien
+- [x] task erklären
+- [x] tasks folien
 - [x] speaker notes einfügen server 
 - [ ] repo extra für moviedatabase
 - [ ] readme mit erklärung
