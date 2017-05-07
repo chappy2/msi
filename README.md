@@ -105,15 +105,15 @@ localhost:5001
 - [x] ecma 6. edition aw
 - [x] cs version 2
 #### Neue Todos
-- [ ] Klassen sss
 - [ ] zukunft einleitung aw
 - [ ] fazit
 - [ ] docco einfügen (nebensatz)
 #### Inhalte bis Dienstag
+- [ ] Klassen sss
 - [ ] klassen folien
 - [ ] task erklären
 - [ ] tasks folien
-- [ ] speaker notes einfügen server 
+- [x] speaker notes einfügen server 
 - [ ] repo extra für moviedatabase
 - [ ] readme mit erklärung
 - [ ] dokumentation einfügen
