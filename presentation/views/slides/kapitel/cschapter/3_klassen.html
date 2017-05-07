@@ -1,3 +1,53 @@
     <section class="msi-slides" >
 	    <h2>Klassen</h2>
+	    <h4>Inhärenz in JavaScript</h4>
+	    <ul>
+	        <li>JavaScript unterstützt Objektorientierung</li>
+	        <li>Ohne Klassen</li>
+	        <li>Über <i>prototype chain</i></li>
+	        <li>Seit ECMAScript 5 <i>Object.create</i></li>
+	    </ul>
     </section>
+   
+  <section class="msi-slides" data-run-in-terminal="code/example4/src/index.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile">
+	    <h2>Klassen</h2>
+	
+</section>
+ <section>
+ <section class="msi-slides" >
+	    <h2>Klassen</h2>
+	    <p>Auszug aus Moviedatabase app.js</p>
+	    <pre><code class="javascript">
+FilmListView = (function(superClass) {
+  extend(FilmListView, superClass);
+  function FilmListView(filmList) {
+	// …
+  }
+// … 	
+  FilmListView.prototype.render = function() {
+  //…
+  }
+  return FilmListView;
+}) (View);
+</code></pre>
+</section>
+<section class="msi-slides" >
+	    <h2>Klassen</h2>
+	    <p>Auszug aus Moviedatabase app.js</p>
+	    <pre><code class="javascript">
+extend = function(child, parent) { 
+	for (var key in parent) { 
+		if (hasProp.call(parent, key)) 
+			child[key] = parent[key]; 
+	} 
+	function ctor() { this.constructor = child; }
+	ctor.prototype = parent.prototype; 
+	child.prototype = new ctor(); 
+	child.__super__ = parent.prototype; 
+	return child; 
+}
+
+</code></pre>
+<p>  <span class="msi-icons-s msi-icons-bulb"></span> kein <i>Object.create</i> &#8594; Instanziierung mit <i>new</i> möglich</p>
+</section>
+</section>

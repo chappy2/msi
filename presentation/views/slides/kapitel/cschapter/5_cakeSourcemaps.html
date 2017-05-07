@@ -3,7 +3,7 @@
 	     <ul>
 	        <li>Build-Werkzeug von CoffeeScript</li>
         <li>Ähnlich zu make und rake</li>
-        <li>Cakefile im Hauptverzeichnis</li>
+        <li>Cakefile im Hauptverzeichnis, in CoffeeScript geschrieben</li>
         <li>Moviedatbase Template  (Quelle)
             <ul>
                 <li>build</li>
@@ -21,18 +21,22 @@
     </aside>
     </section>
     <section class="msi-slides" >
-	    <h2>Cake Task</h2>
-	    <span class="msi-icons-s msi-icons-bubble"></span>
-          <span class="msi-icons-s msi-icons-bulb"></span>
-          <span class="msi-icons-s msi-icons-cup"></span>
-          <span class="msi-icons-s msi-icons-display"></span>
-          <span class="msi-icons-s msi-icons-edit"></span>
-          <span class="msi-icons-s msi-icons-megaphone"></span>
-          <span class="msi-icons-s msi-icons-settings"></span>
-          <span class="msi-icons-s msi-icons-star"></span>
-          <span class="msi-icons-s msi-icons-study"></span>
-          <span class="msi-icons-s msi-icons-user"></span>
-          </p>
+	    <h2>Cake</h2>
+	    <h4>Task</h4>
+	    <ul>
+	        <li>Besteht aus 
+	        <ul>
+	            <li>Name</li>
+	            <li>Beschreibung</li>
+	            <li>auszuführende Funktion</li>
+	        </ul>
+	        </li>
+	        <li>Führt Konsolenbefehle aus</li>
+	        <li>Auch mit Argumenten</li>
+	    </ul>
+	    <pre><code class="coffeescript">
+    task 'docs', 'generate documentation', -> docco()
+</code></pre>
     <aside class="notes">
     </aside>
     </section>
