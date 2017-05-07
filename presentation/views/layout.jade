@@ -36,7 +36,7 @@ html
     script(src='lib/js/head.min.js')
     |     
     script(src='js/reveal.js')
-    |     
+    //include speakerNotes.html|     
     script.
       // More info https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
@@ -47,6 +47,7 @@ html
       slideNumber: true,
       overview: true,
       controls: false,
+      defaultTiming:  120, 
       // More info https://github.com/hakimel/reveal.js#dependencies
       dependencies: [
       { src: 'plugin/reveal-run-in-terminal.js', async: true,
@@ -55,7 +56,8 @@ html
       } },
       { src: 'plugin/markdown/marked.js' },
       { src: 'plugin/markdown/markdown.js' },
-      { src: 'plugin/notes/notes.js', async: true },
+      { src: 'socket.io/socket.io.js', async: true },
+      { src: 'plugin/notes-server/client.js', async: true },
       { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
       ]
       });
