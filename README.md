@@ -104,20 +104,21 @@ localhost:5001
 - [x] literate aw
 - [x] ecma 6. edition aw
 - [x] cs version 2
-#### Neue Todos
-- [ ] zukunft einleitung aw
-- [ ] fazit
-- [ ] docco einfügen (nebensatz)
-#### Inhalte bis Dienstag
 - [x] Klassen sss
 - [x] klassen folien
 - [x] task erklären
 - [x] tasks folien
 - [x] speaker notes einfügen server 
+- [x] dokumentation einfügen
+- [x] Projekt sourcemaps vorhanden
+#### Neue Todos
+- [ ] zukunft einleitung aw
+- [ ] fazit
+- [ ] docco einfügen (nebensatz)
+#### Inhalte bis Sonntag
+- [ ] Sourcemaps ergebnisse in präsi einbauen (zumindest kommentare). andere sprachen bieten mehr optionen für sorucemaps
 - [ ] repo extra für moviedatabase
 - [ ] readme mit erklärung
-- [ ] dokumentation einfügen
-- [ ] Projekt sourcemaps vorhanden
 #### Fragen dozent
 - [x] #seiten nur text? 
 - [x] quiz ok?
