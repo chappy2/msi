@@ -12,6 +12,11 @@ files = [
   'src'
 ]
 
+clientFiles = [
+  'public/dist'
+  'public/src'
+]
+
 
 fs = require 'fs'
 {print} = require 'util'
@@ -144,11 +149,13 @@ log = (message, color, explanation) -> console.log color + message + reset + ' '
 # **and** pipe to process stdout and stderr respectively
 # **and** on child process exit emit callback if set and status is 0
 launch = (cmd, options=[], callback) ->
+  console.log cmd
+  console.log options
   cmd = which(cmd) if which
   app = spawn(cmd, options, { stdio: [0, 0, 0] })
   app.on 'exit', (status) ->
     if status is 0
-      callback()
+      callback?()
     else
       process.exit(status);
 
@@ -171,6 +178,14 @@ build = (watch, callback, {useMapping} = {}) ->
   options = options.concat files
   options.unshift '-w' if watch
   launch 'coffee', options, callback
+  # compile client code in public folder
+  options = ['-c']
+  options.push("-m") if useMapping
+  options.push("-o")
+  options.unshift '-w' if watch
+  options = options.concat clientFiles
+  launch 'coffee', options, callback
+  
 
 # ## *unlinkIfCoffeeFile*
 #
@@ -193,6 +208,11 @@ unlinkIfCoffeeFile = (file) ->
 clean = (callback) ->
   try
     for file in files
+      unless unlinkIfCoffeeFile file
+        walk file, (err, results) ->
+          for f in results
+            unlinkIfCoffeeFile f
+    for file in clientFiles
       unless unlinkIfCoffeeFile file
         walk file, (err, results) ->
           for f in results
@@ -223,14 +243,16 @@ moduleExists = (name) ->
 # **then** invoke launch passing mocha command
 mocha = (options, callback) ->
   #if moduleExists('mocha')
+  
   if typeof options is 'function'
     callback = options
     options = []
   # add coffee directive
-  options.push '--compilers'
-  options.push 'coffee:coffee-script/register'
-  
-  launch 'mocha', options, callback
+  ###
+  mocha options added to test/mocha.opts
+  ###
+  console.log options
+  launch 'mocha' , options, callback
 
 # ## *docco*
 #
@@ -239,4 +261,8 @@ mocha = (options, callback) ->
 docco = (callback) ->
   #if moduleExists('docco')
   walk 'src', (err, files) -> launch 'docco', files, callback
+  walk 'public/src', (err, files) -> launch 'docco', files, callback
+
+  
+
 
