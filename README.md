@@ -19,6 +19,11 @@ Reveal js:
 ```
 git clone https://github.com/hakimel/reveal.js
 ```
+Moviedatabase in eigenes Repository versoben. Klonen innerhalb des Ordners */presentation/code/*
+Reveal js:
+```
+git clone https://github.com/chappy2/Moviedatabase.git
+```
 ### Server Installation
 #### Coffee Script
 Unter Ubuntu ging das npm package coffee-scirpt nicht. Habe es temporär ohne npm installiert:
@@ -117,8 +122,14 @@ localhost:5001
 - [ ] docco einfügen (nebensatz)
 #### Inhalte bis Sonntag
 - [ ] Sourcemaps ergebnisse in präsi einbauen (zumindest kommentare). andere sprachen bieten mehr optionen für sorucemaps
-- [ ] repo extra für moviedatabase
-- [ ] readme mit erklärung
+- [ ] Demofolien anpassen, link für repo
+- [ ] logo überdecken ädern (REveal api)
+- [ ] speaker notes einfügen
+- [ ] css für plugin
+- [ ] beamer test
+- [ ] präsi als pdf exportieren
+- [x] repo extra für moviedatabase
+- [x] readme mit erklärung
 - [x] .litcoffee erstellen
 #### Fragen dozent
 - [x] #seiten nur text? 
