@@ -127,6 +127,7 @@ localhost:5001
 - [ ] speaker notes einfügen
 - [ ] css für plugin
 - [ ] beamer test
+- [ ] format code for moviedatabase
 - [ ] präsi als pdf exportieren
 - [x] repo extra für moviedatabase
 - [x] readme mit erklärung
