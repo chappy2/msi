@@ -6,6 +6,6 @@ reveal.js/
 coffeescript/
 #Local configurations
 presentation/config/default.json
-presentation/code/Moviedatabase/config/default.json
+presentation/code/Moviedatabase/
 .c9/
 literaturBeispiele/
