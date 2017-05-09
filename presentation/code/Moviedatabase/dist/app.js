@@ -19,18 +19,6 @@ customDepend = path.resolve(__dirname, './../public/dependencies/jquery-ui-1.12.
 
 bowerDepend = path.resolve(__dirname, './../public/dependencies/bower_components');
 
-
-/*
-Wird nicht gebraucht! CoffeeScript setzt automatisch einen link in der .js file zu der .coffeescritp file (letzte zeile in js file).
-addHttpHeader=(req, res, next) ->
-    matchUrl = '/clientApp.js';
-    if (req.url.substring(0, matchUrl.length) == matchUrl) 
-        res.setHeader "X-SourceMap", "/clientApp.js.map"
-    return next()  
-
-app.use addHttpHeader
- */
-
 app.use('/public/dist/', express["static"](clientApp));
 
 app.use(express["static"](exposeDocumentation));
@@ -44,5 +32,3 @@ app.use(express["static"](bowerDepend));
 app.use(express["static"](__dirname));
 
 app.listen(config.Server.Port, config.Server.Ip);
-
-//# sourceMappingURL=app.js.map

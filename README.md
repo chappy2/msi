@@ -119,6 +119,7 @@ localhost:5001
 - [ ] Sourcemaps ergebnisse in präsi einbauen (zumindest kommentare). andere sprachen bieten mehr optionen für sorucemaps
 - [ ] repo extra für moviedatabase
 - [ ] readme mit erklärung
+- [x] .litcoffee erstellen
 #### Fragen dozent
 - [x] #seiten nur text? 
 - [x] quiz ok?

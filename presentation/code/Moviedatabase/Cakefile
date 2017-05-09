@@ -149,8 +149,6 @@ log = (message, color, explanation) -> console.log color + message + reset + ' '
 # **and** pipe to process stdout and stderr respectively
 # **and** on child process exit emit callback if set and status is 0
 launch = (cmd, options=[], callback) ->
-  console.log cmd
-  console.log options
   cmd = which(cmd) if which
   app = spawn(cmd, options, { stdio: [0, 0, 0] })
   app.on 'exit', (status) ->
@@ -178,13 +176,18 @@ build = (watch, callback, {useMapping} = {}) ->
   options = options.concat files
   options.unshift '-w' if watch
   launch 'coffee', options, callback
-  # compile client code in public folder
-  options = ['-c']
-  options.push("-m") if useMapping
-  options.push("-o")
-  options.unshift '-w' if watch
-  options = options.concat clientFiles
-  launch 'coffee', options, callback
+  
+  
+  # when callback is mocha (testing) then skip client building. 
+  # tests are only a example for server.
+  if not callback.toString().includes('mocha')
+    # compile client code in public folder
+    options = ['-c']
+    options.push("-m") if useMapping
+    options.push("-o")
+    options.unshift '-w' if watch
+    options = options.concat clientFiles
+    launch 'coffee', options, callback
   
 
 # ## *unlinkIfCoffeeFile*
@@ -251,7 +254,6 @@ mocha = (options, callback) ->
   ###
   mocha options added to test/mocha.opts
   ###
-  console.log options
   launch 'mocha' , options, callback
 
 # ## *docco*

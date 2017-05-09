@@ -40,44 +40,9 @@ clientApp = path.resolve __dirname, <span class="hljs-string">'../public/dist'</
 sourcemapNeedsCoffeeFile = path.resolve __dirname, <span class="hljs-string">'../public/src'</span>
 exposeDocumentation = path.resolve __dirname, <span class="hljs-string">'../docs'</span>
 customDepend = path.resolve __dirname, <span class="hljs-string">'./../public/dependencies/jquery-ui-1.12.1.custom'</span>
-bowerDepend = path.resolve __dirname, <span class="hljs-string">'./../public/dependencies/bower_components'</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>##</p>
+bowerDepend = path.resolve __dirname, <span class="hljs-string">'./../public/dependencies/bower_components'</span>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>Wird nicht gebraucht! CoffeeScript setzt automatisch einen link <span class="hljs-keyword">in</span> der .js file zu der .coffeescritp file (letzte zeile <span class="hljs-keyword">in</span> js file).
-<span class="hljs-function"><span class="hljs-title">addHttpHeader</span>=<span class="hljs-params">(req, res, next)</span> -&gt;</span>
-    matchUrl = <span class="hljs-string">'/clientApp.js'</span>;
-    <span class="hljs-keyword">if</span> (req.url.substring(<span class="hljs-number">0</span>, matchUrl.length) == matchUrl) 
-        res.setHeader <span class="hljs-string">"X-SourceMap"</span>, <span class="hljs-string">"/clientApp.js.map"</span>
-    <span class="hljs-keyword">return</span> next()  
-
-app.use addHttpHeader</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>##</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>app.use <span class="hljs-string">'/public/dist/'</span>,(express.static clientApp)
+app.use <span class="hljs-string">'/public/dist/'</span>,(express.static clientApp)
 app.use express.static exposeDocumentation
 app.use <span class="hljs-string">'/public/src/'</span>,(express.static sourcemapNeedsCoffeeFile)
 app.use express.static customDepend
@@ -87,11 +52,11 @@ app.use express.static __dirname</pre></div></div>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-2">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <p>app.listen 5001,”localhost”</p>
 

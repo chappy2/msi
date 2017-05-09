@@ -1,6 +1,7 @@
 # ## *removeCharacters*#
-# Function in this App Scope (not global, JavaScript function scope.
-# removes unwanted Characters in html id names
+# Function in this App Scope (not global, CoffeeScript compiles the application within a JavaScript function scope).
+#
+# Removes unwanted Characters in html id names.
 re = new RegExp /[ \?]/g
 removeCharacters= (input) ->
     console.log """ 
@@ -9,15 +10,13 @@ removeCharacters= (input) ->
                 """
     input.replace re, ''
     
-# ## Class *View*
-#
-# Base View for MovieListView.
-# Functions:
+# ## Class *View*#
+# Base View for *MovieListView*.
 # #### log
 # short function for logging values
 # parameter <i>value</i> needed
 # #### render
-# only logs for demonstrations purpose
+# only logs for demonstrations purpose (parent logging in MovieListView)
 class View
     render: ->
        @.log "View render called class View"
@@ -26,9 +25,10 @@ class View
         console.log value
         
 # ## Class *Movie*
-# values as object {year:2001,...}
-# movies are stored in localstorage, all functions are only for creation. JSON doesn't provide functions.
-# Functions are only implemented to garantee the same structure of movie Objects.
+# parameter values always as object {year:2001,...}
+#
+# Movies are stored in localstorage (as JSON String) in MovieList. All functions are only for creation. JSON doesn't provide functions.
+# Functions are only implemented to garantee the same structure of Movieobjects.
 class Movie
     constructor: (values) ->
         success=@setAttributes values
@@ -43,7 +43,7 @@ class Movie
         return false
         
 # ## Class *MovieList*
-# movie List uses Localstorage. Complete Colleciton is loaded into localstorage
+# *MovieList* uses Localstorage. Complete Collection is loaded into localstorage.
 # #### constructor
 # - constructor can be defined for classes
 # - function calls without arguments needs () 
@@ -51,18 +51,18 @@ class Movie
 # #### newMovie
 # - generates Id for the new movie from given values
 # - adds movie to collection and saves it
-# - return true or false if successful
+# - return true or false if successful (return can be used in CoffeeScript)
 #
 # #### removeMovie
 # - deletes the movie via comprehension
 # - All movies remain in collection if id is not the same as the given id
 #
 # #### updateMovie
-# Another example for comprehension. This time it returns the one movie, that has the same id.
+# Another example for comprehension. This time it returns the one movie with the same *id* (parameter).
 # #### fetch
-# Example for ? operator
+# Example for ? operator.
 # #### sort
-# Example for JavaScript Function Scope (Classes are compiled to Functions in CoffeeScript)
+# Example for JavaScript Function Scope (classes are compiled to functions in CoffeeScript).
 class MovieList
     constructor: ->
         @storageName='demomoviesdatabaseCollection'
@@ -120,18 +120,18 @@ class MovieList
         else
             @collection=@collection.sort(desc)
 # ## Class *MovieList*
-# movie List uses Localstorage. Complete Colleciton is loaded into localstorage
+# *MovieList* uses localstorage. Complete Collection is loaded and storedi into localstorage.
 # #### constructor
 # - DOM Ids and classes
-# - state
-# - add callback for fetch, and render when done
+# - state (sorting)
+# - add callback for *fetch*, and *render* when done
 # - Example for fat arrow => binding
 #
 # #### render
-# - render used as callback function (propagated trough MovieList localStorage interactions
-# - it overrides the render function of the super class View
-# - Example for Array Comprehension. For each item in collection the function renderMovie is called
-# - Example of use of super class View function log
+# - *render* used as callback function (called after *MovieList* localStorage interactions)
+# - it overrides the *render* function of the super class *View*
+# - Example for Array Comprehension. For each item in collection the function *renderMovie* is called
+# - Example of use of super class *View* function *log*
 #
 # #### renderSorting
 # render the sorting icons
@@ -158,9 +158,9 @@ class MovieList
 # - eg <a id="exampleId1997_director" ...>the edited value</a>
 #
 # #### sort
-# - Get attribut name to sort after from a id
+# - Get attribut name to sort after a id
 # - check if this attribut has been sorted before
-# - sort collection, keep sorting information and render
+# - sort collection, keep sorting information and *render*
 # - callback invoked here. No localStorage interaktion. Parameter needed, otherwise showDialogSave can't call this function.
 #
 # #### isDataSaved

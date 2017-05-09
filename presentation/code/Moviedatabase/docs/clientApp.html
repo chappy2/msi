@@ -28,8 +28,8 @@
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
               <h2 id="-removecharacters-"><em>removeCharacters</em></h2>
-<p>Function in this App Scope (not global, JavaScript function scope.
-removes unwanted Characters in html id names</p>
+<p>Function in this App Scope (not global, CoffeeScript compiles the application within a JavaScript function scope).</p>
+<p>Removes unwanted Characters in html id names.</p>
 
             </div>
             
@@ -51,13 +51,12 @@ removes unwanted Characters in html id names</p>
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <h2 id="class-view-">Class <em>View</em></h2>
-<p>Base View for MovieListView.
-Functions:</p>
+<p>Base View for <em>MovieListView</em>.</p>
 <h4 id="log">log</h4>
 <p>short function for logging values
 parameter <i>value</i> needed</p>
 <h4 id="render">render</h4>
-<p>only logs for demonstrations purpose</p>
+<p>only logs for demonstrations purpose (parent logging in MovieListView)</p>
 
             </div>
             
@@ -78,9 +77,9 @@ parameter <i>value</i> needed</p>
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <h2 id="class-movie-">Class <em>Movie</em></h2>
-<p>values as object {year:2001,…}
-movies are stored in localstorage, all functions are only for creation. JSON doesn’t provide functions.
-Functions are only implemented to garantee the same structure of movie Objects.</p>
+<p>parameter values always as object {year:2001,…}</p>
+<p>Movies are stored in localstorage (as JSON String) in MovieList. All functions are only for creation. JSON doesn’t provide functions.
+Functions are only implemented to garantee the same structure of Movieobjects.</p>
 
             </div>
             
@@ -107,7 +106,7 @@ Functions are only implemented to garantee the same structure of movie Objects.<
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <h2 id="class-movielist-">Class <em>MovieList</em></h2>
-<p>movie List uses Localstorage. Complete Colleciton is loaded into localstorage</p>
+<p><em>MovieList</em> uses Localstorage. Complete Collection is loaded into localstorage.</p>
 <h4 id="constructor">constructor</h4>
 <ul>
 <li>constructor can be defined for classes</li>
@@ -117,7 +116,7 @@ Functions are only implemented to garantee the same structure of movie Objects.<
 <ul>
 <li>generates Id for the new movie from given values</li>
 <li>adds movie to collection and saves it</li>
-<li>return true or false if successful</li>
+<li>return true or false if successful (return can be used in CoffeeScript)</li>
 </ul>
 <h4 id="removemovie">removeMovie</h4>
 <ul>
@@ -125,11 +124,11 @@ Functions are only implemented to garantee the same structure of movie Objects.<
 <li>All movies remain in collection if id is not the same as the given id</li>
 </ul>
 <h4 id="updatemovie">updateMovie</h4>
-<p>Another example for comprehension. This time it returns the one movie, that has the same id.</p>
+<p>Another example for comprehension. This time it returns the one movie with the same <em>id</em> (parameter).</p>
 <h4 id="fetch">fetch</h4>
-<p>Example for ? operator</p>
+<p>Example for ? operator.</p>
 <h4 id="sort">sort</h4>
-<p>Example for JavaScript Function Scope (Classes are compiled to Functions in CoffeeScript)</p>
+<p>Example for JavaScript Function Scope (classes are compiled to functions in CoffeeScript).</p>
 
             </div>
             
@@ -200,20 +199,20 @@ Functions are only implemented to garantee the same structure of movie Objects.<
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <h2 id="class-movielist-">Class <em>MovieList</em></h2>
-<p>movie List uses Localstorage. Complete Colleciton is loaded into localstorage</p>
+<p><em>MovieList</em> uses localstorage. Complete Collection is loaded and storedi into localstorage.</p>
 <h4 id="constructor">constructor</h4>
 <ul>
 <li>DOM Ids and classes</li>
-<li>state</li>
-<li>add callback for fetch, and render when done</li>
+<li>state (sorting)</li>
+<li>add callback for <em>fetch</em>, and <em>render</em> when done</li>
 <li>Example for fat arrow =&gt; binding</li>
 </ul>
 <h4 id="render">render</h4>
 <ul>
-<li>render used as callback function (propagated trough MovieList localStorage interactions</li>
-<li>it overrides the render function of the super class View</li>
-<li>Example for Array Comprehension. For each item in collection the function renderMovie is called</li>
-<li>Example of use of super class View function log</li>
+<li><em>render</em> used as callback function (called after <em>MovieList</em> localStorage interactions)</li>
+<li>it overrides the <em>render</em> function of the super class <em>View</em></li>
+<li>Example for Array Comprehension. For each item in collection the function <em>renderMovie</em> is called</li>
+<li>Example of use of super class <em>View</em> function <em>log</em></li>
 </ul>
 <h4 id="rendersorting">renderSorting</h4>
 <p>render the sorting icons</p>
@@ -243,9 +242,9 @@ Functions are only implemented to garantee the same structure of movie Objects.<
 </ul>
 <h4 id="sort">sort</h4>
 <ul>
-<li>Get attribut name to sort after from a id</li>
+<li>Get attribut name to sort after a id</li>
 <li>check if this attribut has been sorted before</li>
-<li>sort collection, keep sorting information and render</li>
+<li>sort collection, keep sorting information and <em>render</em></li>
 <li>callback invoked here. No localStorage interaktion. Parameter needed, otherwise showDialogSave can’t call this function.</li>
 </ul>
 <h4 id="isdatasaved">isDataSaved</h4>
