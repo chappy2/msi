@@ -121,12 +121,11 @@ localhost:5001
 - [ ] fazit
 - [ ] docco einfügen (nebensatz)
 #### Inhalte bis Sonntag
-- [ ] Sourcemaps ergebnisse in präsi einbauen (zumindest kommentare). andere sprachen bieten mehr optionen für sorucemaps
-- [ ] Demofolien anpassen, link für repo
+- [x] Demofolien anpassen, link für repo
 - [ ] logo überdecken ädern (REveal api)
 - [ ] speaker notes einfügen
-- [ ] css für plugin
-- [ ] beamer test
+- [x] css für plugin
+- [x] beamer test
 - [ ] format code for moviedatabase
 - [ ] präsi als pdf exportieren
 - [x] repo extra für moviedatabase
