@@ -6,6 +6,7 @@ body {
     width: 100% !important;
     white-space:nowrap;
     padding:30px 0 10px 0;
+    position:absolute;
 }
 
 .entry {

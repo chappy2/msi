@@ -52,7 +52,7 @@ io.on( 'connection', function( socket ) {
 });
 
 app.get('/', function (req, res) {
-  res.render('index',config.Server)
+  res.render('index',{Ip:"127.0.0.1",Port:5001});
 })
 
 app.get( '/notes/:socketId', function( req, res ) {
@@ -66,6 +66,7 @@ app.get( '/notes/:socketId', function( req, res ) {
 
 app.use(express.static(revealRunInTerminalPlugin));
 app.use(express.static(revealJsPath));
+app.use(express.static(path.resolve(__dirname, 'public/resources')))
 
 server.listen(config.Server.Port,config.Server.Ip);
 //app.listen(5000,"localhost");

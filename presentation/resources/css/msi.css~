@@ -74,7 +74,7 @@ ol.msi-agenda>ul {
     width: 80%
 }
 section.example-classes div.container{
-height:550px !important;
+height:515px !important;
 }
 section.error-hide pre.term{
 overflow: hidden !important;

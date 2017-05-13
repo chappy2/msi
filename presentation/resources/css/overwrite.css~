@@ -2,7 +2,7 @@
 section[data-run-in-terminal] .container  {
     overflow:hidden !important;
     background-color:black !important;
-    height:500px !important;
+    height:450px !important;
 }
 .reveal section img {
 border:none !important;
