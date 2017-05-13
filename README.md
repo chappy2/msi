@@ -122,7 +122,7 @@ localhost:5001
 - [ ] docco einfügen (nebensatz)
 #### Inhalte bis Sonntag
 - [x] Demofolien anpassen, link für repo
-- [ ] logo überdecken ädern (REveal api)
+- [x] logo überdecken ädern (REveal api)
 - [ ] speaker notes einfügen
 - [x] css für plugin
 - [x] beamer test
@@ -131,6 +131,9 @@ localhost:5001
 - [x] repo extra für moviedatabase
 - [x] readme mit erklärung
 - [x] .litcoffee erstellen
+#### Check Montag
+- [ ] Quellen seite passt?
+- [ ] Vergleichsfolie passt? mit den iframes
 #### Fragen dozent
 - [x] #seiten nur text? 
 - [x] quiz ok?
