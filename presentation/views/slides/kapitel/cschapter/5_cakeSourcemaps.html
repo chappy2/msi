@@ -16,9 +16,15 @@
         </li>
         
     </ul>
-    <aside class="notes">
-        make unix, rake ruby.
-        Beispielprojekt ist ein Template mit tasks
+    <aside class="notes"><ul>
+                <li> make unix, rake ruby.</li>
+       <li> Beispielprojekt ist ein Template mit erweiterten task (client und server build)</li>
+	<li>build watch sind compile befehle</li>
+<li>test mit mocha (als beispiel) komplettes projekt setup in kombination mit package.json</li>
+<li>doc -> docco (ergebnis unter docs/ einsehbar)</li>
+<li>clean löscht alle js files in src und dist folder</li>
+        
+    </ul>
     </aside>
     </section>
     <section class="msi-slides" >
@@ -37,6 +43,7 @@
     task 'docs', 'generate documentation', -> docco()
 </code></pre>
     <aside class="notes">
+auszüführende funktion oft command line befehle. docco() ist funktion innerhalb cakefile
     </aside>
     </section>
        <section class="msi-slides" >
@@ -55,12 +62,19 @@
         <span class="msi-icons-m msi-icons-opera"></span><span class="sourcem">  23+ </span>
         <span class="msi-icons-m msi-icons-firefox"></span><span class="sourcem">  23+</span> 
     <aside class="notes">
+<ul>   
+ <li>In der Moviedatabase kann über cake -m buld||watch mitgeneriert werden</li>
+ <li>Jeweils im dist ordner ist die .map datei</li>
+ <li> Andere compile to (less bz) habe mehr optionen (inline map). geht in cs nicht </li>
+    <li>  <ul>
         Browser unterstützung: 
-        Diese Map teilt der JavaScript-Umgebung mit, welche Quellcodezeilen in JavaScript zu den geschriebenen Zeilen in CoffeeScript passen
-        - alle https://code.tutsplus.com/tutorials/javascript-debugging-using-cross-browser-source-maps--cms-24430
-        - firefox https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/
-        - chrome https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps
-        ide https://msdn.microsoft.com/library/dn255007(v=vs.85)#source_maps
+      <li>   Diese Map teilt der JavaScript-Umgebung mit, welche Quellcodezeilen in JavaScript zu den geschriebenen Zeilen in CoffeeScript passen</li>
+       <li>  - alle https://code.tutsplus.com/tutorials/javascript-debugging-using-cross-browser-source-maps--cms-24430</li>
+       <li>  - firefox https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/</li>
+        <li> - chrome https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps</li>
+       <li>  ide https://msdn.microsoft.com/library/dn255007(v=vs.85)#source_maps</li>
+</ul></li>
+</ul>
     </aside>
     </section>
     
