@@ -1,7 +1,6 @@
     <section class="msi-slides" >
 	    <h2>1. Einleitung</h2>
         <ul>
-<li>Was ist CoffeeScript?</li>
             <li>Historie von Javascript</li>
             <li>Probleme von Javascript</li>
         </ul>

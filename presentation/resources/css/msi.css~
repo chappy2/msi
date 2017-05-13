@@ -74,7 +74,7 @@ ol.msi-agenda>ul {
     width: 80%
 }
 section.example-classes div.container{
-height:515px !important;
+height:550px !important;
 }
 section.error-hide pre.term{
 overflow: hidden !important;
@@ -85,6 +85,9 @@ display:block;
 width: 110% !important;
 min-width:110% !important;
 max-width:110% !important;
+}
+.msi-vergleich {
+width:100% !important;
 }
 /*
 iframe.timeline {

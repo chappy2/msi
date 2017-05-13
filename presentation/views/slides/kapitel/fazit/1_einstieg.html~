@@ -21,14 +21,16 @@
  <section class="msi-slides" >
 <h2>Quellen</h2>
 	    <ul>
-<li>CoffeeScript, die Alternative zu JavaScript – eine kompakte Einführung (Andreas Schubert)</li>
-<li>CoffeeScript in Action (Patrick Lee)</li>
-<li>Pro JavaScript Techniques (John Resig, Russ Ferguson, John Paxton)</li>
-<li>ECMA International – Standard ECMA-262, https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf</li>
-<li>CoffeeScript Offizielle Homepage, http://coffeescript.org/</li>
-<li>Cakefile Template, http://twilson63.github.io/cakefile-template/</li>
-<li>Decafifeinate, https://github.com/decaffeinate/decaffeinate</li>
-
-      
+	        <li>1.	Andreas Schubert, CoffeeScript, die Alternative zu JavaScript – eine kompakte Einführung</li>
+4.	<li>ECMA International – Standard ECMA-262 , https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf</li>
+5.	<li>http://bonsaiden.github.io/JavaScript-Garden/)</li>
+10.<li> CoffeeScript in Action, Patrick Lee, 2014</li>
+15<li> Pro JavaScript Techniques (John Resig, Russ Ferguson, John Paxton) Apress</li>
+11. <li>http://coffeescript.org/</li>
+12. <li>http://twilson63.github.io/cakefile-template/</li>
+13 <li>http://coffeescript.org/v2/#coffeescript-2</li>
+14 <li>https://github.com/decaffeinate/decaffeinate</li>
+  
+	     
 	    </ul>
 </section>

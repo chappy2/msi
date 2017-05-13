@@ -1,0 +1,676 @@
+<section >
+<div class="msi-layout msi-vergleich">
+<div class="msi-layout-item-50">
+<span style="font-size:85%" >clientApp.coffee (~220 LOC)</span>
+<pre><code style="max-width:450px !important; font-size:70%;" class="coffee">
+re = new RegExp /[ \?]/g
+removeCharacters= (input) ->
+    console.log """ 
+                Leerzeichen und Fragezeichen 
+                werden aus #{input} entfernt.
+                """
+    input.replace re, ''
+class View
+    render: ->
+       @.log "View render called class View"
+
+    log: (value) ->
+        console.log value
+class Movie
+    constructor: (values) ->
+        success=@setAttributes values
+        if success
+            @id=removeCharacters values.title + values.year
+    validate: (values)->
+        true
+    setAttributes: (values) ->
+        if @validate values
+            @attributes=values
+            return true
+        return false
+class MovieList
+    constructor: ->
+        @storageName='demomoviesdatabaseCollection'
+        @fetch()
+        @
+    newMovie: (values,callback) ->
+        futureId=removeCharacters values.title + values.year
+        checkExisting=@getMovie(futureId)
+        if not checkExisting? or checkExisting.length>=1
+            callback?()
+            return false
+        elem=new Movie(values)
+        @collection.push elem
+        @save(callback)
+        true
+    removeMovie: (ids,callback) ->
+        @collection = (movie for movie in @collection when movie.id != ids)
+        @save(callback)
+    getMovie:(ids) -> 
+        result=(movie for movie in @collection when movie.id == ids)
+        result
+    getCollection: ->
+        @collection
+    fetch: (callback)-> 
+        temp=localStorage[@storageName]
+        if not temp?
+            @collection=[]
+            @newMovie {year:2018,title:'le movies',director:'derpington',fsk:'18',runtime:'2011-2015'}
+         else 
+            @collection=JSON.parse temp
+        callback?()
+    save: (callback)->
+        localStorage[@storageName]=JSON.stringify @getCollection()
+        callback?()
+    updateMovie: (id,attribut,value) ->
+        movies=@getMovie id
+        movies[0].attributes[attribut]=value
+        movies[0].id=removeCharacters movies[0].attributes.title+movies[0].attributes.year
+    sort: (attribut,sorting)->
+        @sorted={attribut,sorting}
+        asc=(a,b)-> 
+            if a.attributes[attribut] < b.attributes[attribut] 
+                return -1
+            if a.attributes[attribut]  > b.attributes[attribut] 
+                return 1
+            0
+        desc=(a,b)-> 
+            if a.attributes[attribut] > b.attributes[attribut] 
+                return -1
+            if a.attributes[attribut]  < b.attributes[attribut] 
+                return 1
+            0
+        if sorting is "asc"
+            @collection=@collection.sort(asc)
+        else
+            @collection=@collection.sort(desc)
+class MovieListView extends View
+    constructor: (MovieList)->
+        @inputDirector='#director'
+        @inputFsk= '#fsk'
+        @inputTitle='#title'
+        @inputYear='#year'
+        @inputRuntime='#runtime'
+        @tbodyData= '#contentData'
+        @buttonSave='#save-table'
+        @buttonCreate='#create-movie'
+        @classNotSaved='.editable-unsaved'
+        @aSortTitle='#sortTitle'
+        @aSortDirector='#sortDirector'
+        @aSortFsk='#sortfsk'
+        @aSortYear='#sortYear'
+        @aSortRuntime='#sortRuntime'
+       
+        @sorted=["",""]
+        @MovieList=MovieList
+        
+        
+        @render()
+        
+        $(@inputFsk).on 'keydown',(event) =>
+            if event.keyCode == 13
+                @showDialogSave( @createMovie,event)
+        $(@buttonCreate).on 'click',(event) =>
+            @showDialogSave( @createMovie,event)
+        $(@buttonSave).on 'click',(event) =>
+            @saveMovieList(event,@render)
+        $(@aSortTitle+","+@aSortDirector+","+@aSortYear+","+@aSortRuntime+","+@aSortFsk).on 'click',(event)=>
+            @showDialogSave( @sort,event)
+    
+        dialogOptions={
+            autoOpen:false,
+            show:"blind",
+            hide:"blind", 
+            modal: true
+        }
+        $("#dialog-invalid-input").dialog dialogOptions
+        $("#dialog-already-exist").dialog dialogOptions
+        $("#dialog-eidtable-not-saved").dialog dialogOptions
+
+        $.fn.editable.defaults.mode = 'inline'
+        @
+    render: =>
+        @log "render fired"
+        trString=(@renderMovie movie for movie in @MovieList.getCollection())
+        $(@tbodyData).empty()
+        $(@tbodyData).append trString.join()
+        @addDeleteEvents()
+        @initXEditableFields()
+        $( "button" ).button()
+        @renderSorting()
+    renderSorting:  ->
+        if @sorted[0] != "" and @sorted[1] != ""
+            $(".sort-asc,.sort-desc").each (k, v) =>
+                v.setAttribute "class",""
+                v.lastChild.setAttribute "class",""
+            $(@sorted[0]).attr "class",@sorted[1]
+            iconClass="ui-icon ui-icon-caret-1-"
+            if @sorted[1] is "sort-asc"
+                iconClass=iconClass+"s"
+            else
+                iconClass=iconClass+"n"
+            $(@sorted[0]+">span").attr "class",iconClass
+    renderMovie: (movie)->
+        values= movie.attributes
+        """<tr id='#{movie.id}_row'>
+            <td><a href="#" data-type="text"  data-pk="#{movie.id}"  data-title="Enter username" id="#{movie.id}_title">#{values.title}</a></td>
+            <td><a href="#" data-type="text"  data-pk="#{movie.id}"  data-title="Enter username" id="#{movie.id}_director">#{values.director}</a></td>
+            <td><a href="#" data-type="text"  data-pk="#{movie.id}"  data-title="Enter username" id="#{movie.id}_year">#{values.year}</a></td>
+            <td><a href="#" data-type="text"  data-pk="#{movie.id}"  data-title="Enter username" id="#{movie.id}_runtime">#{values.runtime}</a></td>
+            <td><a href="#" data-type="text"  data-pk="#{movie.id}"   data-title="Enter username" id="#{movie.id}_fsk">#{values.fsk}</a></td>
+            <td><form>
+                <button  id='#{movie.id}'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' >
+                    <span class="ui-icon ui-icon-minus"></span>
+                </button>
+            </form></td>
+        </tr>"""
+    initXEditableFields: ->
+        $.fn.editable.defaults.mode = 'inline'
+        for movie in @MovieList.getCollection()
+            $("#"+movie.id+"_title").editable()
+            $("#"+movie.id+"_director").editable()
+            $("#"+movie.id+"_year").editable()
+            $("#"+movie.id+"_runtime").editable()
+            $("#"+movie.id+"_fsk").editable()
+    addDeleteEvents:  ->
+        for movie in @MovieList.getCollection()
+            $("#"+movie.id).on 'click',(event) =>
+                @deleteMovie event,@render 
+        
+    checkInputFields: (values)->
+        isNotEmpty=true
+        for k,v of values
+           if not v
+                isNotEmpty=false
+        isNotEmpty
+    readInputFields: ->
+        values={}
+        values.title =$(@inputTitle).val()
+        values.director =$(@inputDirector).val()
+        values.year =$(@inputYear).val()
+        values.runtime =$(@inputRuntime).val()
+        values.fsk =$(@inputFsk).val()
+        values
+    createMovie: (event,callback) ->
+        values=@readInputFields()
+        valid=@checkInputFields values
+        if  valid
+            created=@MovieList.newMovie values,callback
+            if not created
+                $("#dialog-already-exist").dialog("open")
+        else
+            $("#dialog-invalid-input").dialog("open")
+        @
+    deleteMovie:(event,callback) ->
+        @MovieList.removeMovie event.currentTarget.id,callback
+        @
+    saveMovieList: (event,callback)->
+        $(@classNotSaved).each (k, v) =>
+            newV=v.id.split "_"
+            @MovieList.updateMovie newV[0],newV[1],v.innerHTML
+        @MovieList.save(callback)
+        @
+    sort: (event,callback) ->
+        sorting="asc"
+        val=event.currentTarget.id.replace "sort",""
+        val=val.toLowerCase()
+        if @sorted[0] is '#'+event.currentTarget.id
+            if @sorted[1] is "sort-"+sorting
+                sorting="desc"
+        @MovieList.sort val,sorting
+        @sorted=['#'+event.currentTarget.id,"sort-"+sorting]
+        callback?()
+        @
+    isDataSaved:->
+        $('.editable-unsaved').length <= 0
+    showDialogSave: (@arg,event) ->
+        if not @isDataSaved()
+            dynamicButton= {
+                "Save and continue":  => 
+                    @saveMovieList(event) 
+                    @arg(event,@render)
+                    $("#dialog-eidtable-not-saved").dialog "close"         ,
+                "No Save and continue":  => 
+                    @arg(event,@render)
+                    $("#dialog-eidtable-not-saved").dialog "close"  
+            }
+            $("#dialog-eidtable-not-saved").dialog "option","buttons",dynamicButton
+            $("#dialog-eidtable-not-saved").dialog "open"
+        else
+            @arg(event,@render)
+MovieList=new MovieList()
+app=new MovieListView(MovieList)
+
+</code></pre>
+
+</div>
+<div class="msi-layout-item-50">
+<span >clientApp.js (~320 LOC)</span>
+<pre ><code style="max-width:450px !important; font-size:70%;" class="javascript">
+// Generated by CoffeeScript 1.4.0
+(function() {
+  var Movie, MovieList, MovieListView, View, app, re, removeCharacters,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  re = new RegExp(/[ \?]/g);
+
+  removeCharacters = function(input) {
+    console.log(" \nLeerzeichen und Fragezeichen \nwerden aus " + input + " entfernt.");
+    return input.replace(re, '');
+  };
+
+  View = (function() {
+
+    function View() {}
+
+    View.prototype.render = function() {
+      return this.log("View render called class View");
+    };
+
+    View.prototype.log = function(value) {
+      return console.log(value);
+    };
+
+    return View;
+
+  })();
+
+  Movie = (function() {
+
+    function Movie(values) {
+      var success;
+      success = this.setAttributes(values);
+      if (success) {
+        this.id = removeCharacters(values.title + values.year);
+      }
+    }
+
+    Movie.prototype.validate = function(values) {
+      return true;
+    };
+
+    Movie.prototype.setAttributes = function(values) {
+      if (this.validate(values)) {
+        this.attributes = values;
+        return true;
+      }
+      return false;
+    };
+
+    return Movie;
+
+  })();
+
+  MovieList = (function() {
+
+    function MovieList() {
+      this.storageName = 'demomoviesdatabaseCollection';
+      this.fetch();
+      this;
+
+    }
+
+    MovieList.prototype.newMovie = function(values, callback) {
+      var checkExisting, elem, futureId;
+      futureId = removeCharacters(values.title + values.year);
+      checkExisting = this.getMovie(futureId);
+      if (!(checkExisting != null) || checkExisting.length >= 1) {
+        if (typeof callback === "function") {
+          callback();
+        }
+        return false;
+      }
+      elem = new Movie(values);
+      this.collection.push(elem);
+      this.save(callback);
+      return true;
+    };
+
+    MovieList.prototype.removeMovie = function(ids, callback) {
+      var movie;
+      this.collection = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.collection;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          movie = _ref[_i];
+          if (movie.id !== ids) {
+            _results.push(movie);
+          }
+        }
+        return _results;
+      }).call(this);
+      return this.save(callback);
+    };
+
+    MovieList.prototype.getMovie = function(ids) {
+      var movie, result;
+      result = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.collection;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          movie = _ref[_i];
+          if (movie.id === ids) {
+            _results.push(movie);
+          }
+        }
+        return _results;
+      }).call(this);
+      return result;
+    };
+
+    MovieList.prototype.getCollection = function() {
+      return this.collection;
+    };
+
+    MovieList.prototype.fetch = function(callback) {
+      var temp;
+      temp = localStorage[this.storageName];
+      if (!(temp != null)) {
+        this.collection = [];
+        this.newMovie({
+          year: 2018,
+          title: 'le movies',
+          director: 'derpington',
+          fsk: '18',
+          runtime: '2011-2015'
+        });
+      } else {
+        this.collection = JSON.parse(temp);
+      }
+      return typeof callback === "function" ? callback() : void 0;
+    };
+
+    MovieList.prototype.save = function(callback) {
+      localStorage[this.storageName] = JSON.stringify(this.getCollection());
+      return typeof callback === "function" ? callback() : void 0;
+    };
+
+    MovieList.prototype.updateMovie = function(id, attribut, value) {
+      var movies;
+      movies = this.getMovie(id);
+      movies[0].attributes[attribut] = value;
+      return movies[0].id = removeCharacters(movies[0].attributes.title + movies[0].attributes.year);
+    };
+
+    MovieList.prototype.sort = function(attribut, sorting) {
+      var asc, desc;
+      this.sorted = {
+        attribut: attribut,
+        sorting: sorting
+      };
+      asc = function(a, b) {
+        if (a.attributes[attribut] < b.attributes[attribut]) {
+          return -1;
+        }
+        if (a.attributes[attribut] > b.attributes[attribut]) {
+          return 1;
+        }
+        return 0;
+      };
+      desc = function(a, b) {
+        if (a.attributes[attribut] > b.attributes[attribut]) {
+          return -1;
+        }
+        if (a.attributes[attribut] < b.attributes[attribut]) {
+          return 1;
+        }
+        return 0;
+      };
+      if (sorting === "asc") {
+        return this.collection = this.collection.sort(asc);
+      } else {
+        return this.collection = this.collection.sort(desc);
+      }
+    };
+
+    return MovieList;
+
+  })();
+
+  MovieListView = (function(_super) {
+
+    __extends(MovieListView, _super);
+
+    function MovieListView(MovieList) {
+      this.render = __bind(this.render, this);
+
+      var dialogOptions,
+        _this = this;
+      this.inputDirector = '#director';
+      this.inputFsk = '#fsk';
+      this.inputTitle = '#title';
+      this.inputYear = '#year';
+      this.inputRuntime = '#runtime';
+      this.tbodyData = '#contentData';
+      this.buttonSave = '#save-table';
+      this.buttonCreate = '#create-movie';
+      this.classNotSaved = '.editable-unsaved';
+      this.aSortTitle = '#sortTitle';
+      this.aSortDirector = '#sortDirector';
+      this.aSortFsk = '#sortfsk';
+      this.aSortYear = '#sortYear';
+      this.aSortRuntime = '#sortRuntime';
+      this.sorted = ["", ""];
+      this.MovieList = MovieList;
+      this.render();
+      $(this.inputFsk).on('keydown', function(event) {
+        if (event.keyCode === 13) {
+          return _this.showDialogSave(_this.createMovie, event);
+        }
+      });
+      $(this.buttonCreate).on('click', function(event) {
+        return _this.showDialogSave(_this.createMovie, event);
+      });
+      $(this.buttonSave).on('click', function(event) {
+        return _this.saveMovieList(event, _this.render);
+      });
+      $(this.aSortTitle + "," + this.aSortDirector + "," + this.aSortYear + "," + this.aSortRuntime + "," + this.aSortFsk).on('click', function(event) {
+        return _this.showDialogSave(_this.sort, event);
+      });
+      dialogOptions = {
+        autoOpen: false,
+        show: "blind",
+        hide: "blind",
+        modal: true
+      };
+      $("#dialog-invalid-input").dialog(dialogOptions);
+      $("#dialog-already-exist").dialog(dialogOptions);
+      $("#dialog-eidtable-not-saved").dialog(dialogOptions);
+      $.fn.editable.defaults.mode = 'inline';
+      this;
+
+    }
+
+    MovieListView.prototype.render = function() {
+      var movie, trString;
+      this.log("render fired");
+      trString = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.MovieList.getCollection();
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          movie = _ref[_i];
+          _results.push(this.renderMovie(movie));
+        }
+        return _results;
+      }).call(this);
+      $(this.tbodyData).empty();
+      $(this.tbodyData).append(trString.join());
+      this.addDeleteEvents();
+      this.initXEditableFields();
+      $("button").button();
+      return this.renderSorting();
+    };
+
+    MovieListView.prototype.renderSorting = function() {
+      var iconClass,
+        _this = this;
+      if (this.sorted[0] !== "" && this.sorted[1] !== "") {
+        $(".sort-asc,.sort-desc").each(function(k, v) {
+          v.setAttribute("class", "");
+          return v.lastChild.setAttribute("class", "");
+        });
+        $(this.sorted[0]).attr("class", this.sorted[1]);
+        iconClass = "ui-icon ui-icon-caret-1-";
+        if (this.sorted[1] === "sort-asc") {
+          iconClass = iconClass + "s";
+        } else {
+          iconClass = iconClass + "n";
+        }
+        return $(this.sorted[0] + ">span").attr("class", iconClass);
+      }
+    };
+
+    MovieListView.prototype.renderMovie = function(movie) {
+      var values;
+      values = movie.attributes;
+      return "<tr id='" + movie.id + "_row'>\n    <td><a href=\"#\" data-type=\"text\"  data-pk=\"" + movie.id + "\"  data-title=\"Enter username\" id=\"" + movie.id + "_title\">" + values.title + "</a></td>\n    <td><a href=\"#\" data-type=\"text\"  data-pk=\"" + movie.id + "\"  data-title=\"Enter username\" id=\"" + movie.id + "_director\">" + values.director + "</a></td>\n    <td><a href=\"#\" data-type=\"text\"  data-pk=\"" + movie.id + "\"  data-title=\"Enter username\" id=\"" + movie.id + "_year\">" + values.year + "</a></td>\n    <td><a href=\"#\" data-type=\"text\"  data-pk=\"" + movie.id + "\"  data-title=\"Enter username\" id=\"" + movie.id + "_runtime\">" + values.runtime + "</a></td>\n    <td><a href=\"#\" data-type=\"text\"  data-pk=\"" + movie.id + "\"   data-title=\"Enter username\" id=\"" + movie.id + "_fsk\">" + values.fsk + "</a></td>\n    <td><form>\n        <button  id='" + movie.id + "'  class='ui-button ui-corner-all ui-widget ui-button-icon-only ' >\n            <span class=\"ui-icon ui-icon-minus\"></span>\n        </button>\n    </form></td>\n</tr>";
+    };
+
+    MovieListView.prototype.initXEditableFields = function() {
+      var movie, _i, _len, _ref, _results;
+      $.fn.editable.defaults.mode = 'inline';
+      _ref = this.MovieList.getCollection();
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        movie = _ref[_i];
+        $("#" + movie.id + "_title").editable();
+        $("#" + movie.id + "_director").editable();
+        $("#" + movie.id + "_year").editable();
+        $("#" + movie.id + "_runtime").editable();
+        _results.push($("#" + movie.id + "_fsk").editable());
+      }
+      return _results;
+    };
+
+    MovieListView.prototype.addDeleteEvents = function() {
+      var movie, _i, _len, _ref, _results,
+        _this = this;
+      _ref = this.MovieList.getCollection();
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        movie = _ref[_i];
+        _results.push($("#" + movie.id).on('click', function(event) {
+          return _this.deleteMovie(event, _this.render);
+        }));
+      }
+      return _results;
+    };
+
+    MovieListView.prototype.checkInputFields = function(values) {
+      var isNotEmpty, k, v;
+      isNotEmpty = true;
+      for (k in values) {
+        v = values[k];
+        if (!v) {
+          isNotEmpty = false;
+        }
+      }
+      return isNotEmpty;
+    };
+
+    MovieListView.prototype.readInputFields = function() {
+      var values;
+      values = {};
+      values.title = $(this.inputTitle).val();
+      values.director = $(this.inputDirector).val();
+      values.year = $(this.inputYear).val();
+      values.runtime = $(this.inputRuntime).val();
+      values.fsk = $(this.inputFsk).val();
+      return values;
+    };
+
+    MovieListView.prototype.createMovie = function(event, callback) {
+      var created, valid, values;
+      values = this.readInputFields();
+      valid = this.checkInputFields(values);
+      if (valid) {
+        created = this.MovieList.newMovie(values, callback);
+        if (!created) {
+          $("#dialog-already-exist").dialog("open");
+        }
+      } else {
+        $("#dialog-invalid-input").dialog("open");
+      }
+      return this;
+    };
+
+    MovieListView.prototype.deleteMovie = function(event, callback) {
+      this.MovieList.removeMovie(event.currentTarget.id, callback);
+      return this;
+    };
+
+    MovieListView.prototype.saveMovieList = function(event, callback) {
+      var _this = this;
+      $(this.classNotSaved).each(function(k, v) {
+        var newV;
+        newV = v.id.split("_");
+        return _this.MovieList.updateMovie(newV[0], newV[1], v.innerHTML);
+      });
+      this.MovieList.save(callback);
+      return this;
+    };
+
+    MovieListView.prototype.sort = function(event, callback) {
+      var sorting, val;
+      sorting = "asc";
+      val = event.currentTarget.id.replace("sort", "");
+      val = val.toLowerCase();
+      if (this.sorted[0] === '#' + event.currentTarget.id) {
+        if (this.sorted[1] === "sort-" + sorting) {
+          sorting = "desc";
+        }
+      }
+      this.MovieList.sort(val, sorting);
+      this.sorted = ['#' + event.currentTarget.id, "sort-" + sorting];
+      if (typeof callback === "function") {
+        callback();
+      }
+      return this;
+    };
+
+    MovieListView.prototype.isDataSaved = function() {
+      return $('.editable-unsaved').length <= 0;
+    };
+
+    MovieListView.prototype.showDialogSave = function(arg, event) {
+      var dynamicButton,
+        _this = this;
+      this.arg = arg;
+      if (!this.isDataSaved()) {
+        dynamicButton = {
+          "Save and continue": function() {
+            _this.saveMovieList(event);
+            _this.arg(event, _this.render);
+            return $("#dialog-eidtable-not-saved").dialog("close");
+          },
+          "No Save and continue": function() {
+            _this.arg(event, _this.render);
+            return $("#dialog-eidtable-not-saved").dialog("close");
+          }
+        };
+        $("#dialog-eidtable-not-saved").dialog("option", "buttons", dynamicButton);
+        return $("#dialog-eidtable-not-saved").dialog("open");
+      } else {
+        return this.arg(event, this.render);
+      }
+    };
+
+    return MovieListView;
+
+  })(View);
+
+  MovieList = new MovieList();
+
+  app = new MovieListView(MovieList);
+
+}).call(this);
+</code></pre>
+
+</div>
+</div>
+</section>

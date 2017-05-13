@@ -73,6 +73,9 @@ ol.msi-agenda>ul {
     display:table-cell;
     width: 80%
 }
+code {
+	background-color:black !important;
+}
 section.example-classes div.container{
 height:550px !important;
 }
@@ -85,6 +88,9 @@ display:block;
 width: 110% !important;
 min-width:110% !important;
 max-width:110% !important;
+}
+.msi-vergleich {
+width:100% !important;
 }
 /*
 iframe.timeline {

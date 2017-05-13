@@ -44,7 +44,7 @@
 	     <ul>
 	         <li>Für Debugging-Zwecke</li>
 	         <li>Mapped JavaScript- auf CoffeeScript-Zeilen</li>
-	        <li>Generierung mit <i>--map</i> Argument</li>
+	        <li>Generiert über <i>--map</i> Argument</li>
 	        <li>Ablaufumgebung muss Sourcemaps unterstützen</li>
         
     </ul>

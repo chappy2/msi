@@ -1,6 +1,6 @@
     <section class="msi-slides" >
 	    <h2>Klassen</h2>
-	    <h4>Inhärenz in JavaScript</h4>
+	    <h4>Typerweiterung in JavaScript</h4>
 	    <ul>
 	        <li>JavaScript unterstützt Objektorientierung</li>
 	        <li>Ohne Klassen</li>
@@ -16,7 +16,7 @@
  <section>
  <section class="msi-slides" >
 	    <h2>Klassen</h2>
-	    <p>Auszug aus Moviedatabase app.js</p>
+	    <p>Auszug aus Moviedatabase clientApp.js</p>
 	    <pre><code class="javascript">
 FilmListView = (function(superClass) {
   extend(FilmListView, superClass);
@@ -30,6 +30,7 @@ FilmListView = (function(superClass) {
   return FilmListView;
 }) (View);
 </code></pre>
+<p>  <span class="msi-icons-s msi-icons-bulb"></span> Instanziierung mit <i>new</i> möglich</p>
 </section>
 <section class="msi-slides" >
 	    <h2>Klassen</h2>
@@ -48,6 +49,6 @@ extend = function(child, parent) {
 }
 
 </code></pre>
-<p>  <span class="msi-icons-s msi-icons-bulb"></span> kein <i>Object.create</i> &#8594; Instanziierung mit <i>new</i> möglich</p>
+
 </section>
 </section>

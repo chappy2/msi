@@ -12,8 +12,8 @@
         <ul class="fragment fade-up">
             <li>Intention von CoffeeScript:
         <ul > 
-             <li >Nicht nur Probleme von JavaScript beseitigen</li>
             <li > Einfachheit</li>
+             <li >Nicht nur Probleme von JavaScript beseitigen</li>
         </ul></li>
         </ul>
         <aside class="notes">
