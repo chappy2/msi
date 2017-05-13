@@ -10,8 +10,14 @@
         </ul>
         <p>Allein die Syntax unterscheidet sich zu CoffeeScript</p>
         <aside class="notes">
-            wie in der timeline gesehen, gibt es schon die 7. version.
-            Die 6. Edition ist aber, diejenige, die den Javascript standard grundlegend verändert hat.
-            synonyme es6, ECMA2015+
+           7. Edition von ECMAScript ist zwar die aktuelle, aber die 6. Edition hat den JavaScript Standard grundlegend verändert. 
+
+Ziel von ES6 war es diverse Praktiken, die sich in der Community von JavaScript ergeben haben, konsequent umzusetzen. Dies ist unter anderem auch auf Konzepte zurückzuführen, die vor allem in CoffeeScript zum Tragen gekommen sind. 
+
+Block Scoped automatisch, indem Variablendeklarationen außerhalb des scopes deklariert. ES6 benutzt Let. 
+
+Template Strings: mithilfe von String-Interpolation, bei dem es möglich ist innerhalb eines Strings auf Variablen außerhalb des Strings zu verweisen. 
+
+Für einen Großteil von ES6 Funktionen lässt sich sagen, dass die Konventionen, die Entwickler bereits aus CoffeeScript kennen, übertragen lassen. Allein die Syntax unterscheidet sich etwas.  
         </aside>
     </section>

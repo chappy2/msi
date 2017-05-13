@@ -8,9 +8,11 @@
 	         <li>CoffeeScript hat den ECMA-Standard vorangetrieben</li>
 	    </ul>
 	    <aside class="notes">
-	        Community :für probleme in coffeescript findet man online kaum etwas (zb stackoverflow).
-	        da müsste man dann das problem mit javascript beschreiben und lösung übersetzen.
-	        Kompilationsschrit: negativ: build nötig (cake oder direkt coffee befehl). positiv: für ci gut, build kann fehler zeigen
+	        Für Probleme in CoffeeScript findet man online kaum Lösungen z.B. Stackoverflow. Deswegen muss man das Problem mit JavaScript beschreiben und die Lösung übersetzen.   
+
+Kompilationsschritt: Negativ dabei, ein Build notwendig, wie cake oder direkt mit dem Coffee-Befehl. Positiv für CI, da der Build Fehler anzeigt und es fehlschlägt. 
+
+Letztendlich fehlen JavaScript viele der modernen Paradigmen, die Entwickler aus der Softwareentwicklung gewöhnt sind. JavaScript verwendet viele unverständliche Konventionen. Grundsätzlich liegt das zwar nicht an den Entwicklern der Browser, allerdings haben sich diese Dinge über Jahre hinweg etabliert und sind schwierig zu ändern, besonders bezüglich Abwärtskompatibilität.  
 	    </aside>
     </section>
      <section class="msi-slides" >
@@ -21,16 +23,14 @@
  <section class="msi-slides" >
 <h2>Quellen</h2>
 	    <ul>
-	        <li>1.	Andreas Schubert, CoffeeScript, die Alternative zu JavaScript – eine kompakte Einführung</li>
-4.	<li>ECMA International – Standard ECMA-262 , https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf</li>
-5.	<li>http://bonsaiden.github.io/JavaScript-Garden/)</li>
-10.<li> CoffeeScript in Action, Patrick Lee, 2014</li>
-15<li> Pro JavaScript Techniques (John Resig, Russ Ferguson, John Paxton) Apress</li>
-11. <li>http://coffeescript.org/</li>
-12. <li>http://twilson63.github.io/cakefile-template/</li>
-13 <li>http://coffeescript.org/v2/#coffeescript-2</li>
-14 <li>https://github.com/decaffeinate/decaffeinate</li>
-  
-	     
+<li>CoffeeScript, die Alternative zu JavaScript – eine kompakte Einführung (Andreas Schubert)</li>
+<li>CoffeeScript in Action (Patrick Lee)</li>
+<li>Pro JavaScript Techniques (John Resig, Russ Ferguson, John Paxton)</li>
+<li>ECMA International – Standard ECMA-262, https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf</li>
+<li>CoffeeScript Offizielle Homepage, http://coffeescript.org/</li>
+<li>Cakefile Template, http://twilson63.github.io/cakefile-template/</li>
+<li>Decafifeinate, https://github.com/decaffeinate/decaffeinate</li>
+
+      
 	    </ul>
 </section>

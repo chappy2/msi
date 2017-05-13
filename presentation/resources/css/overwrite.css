@@ -36,8 +36,8 @@ box-shadow:none !important;
     text-align: center;
 }
 
-/* Styles from reveal.js*/
-.reveal{
+/* Styles from reveal.js .reveal*/
+.reveal-overwrite{
       background-image: url('../img/logo/coffeescript.png');
     background-repeat: no-repeat;
      background-size: 128px 128px;

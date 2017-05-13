@@ -14,20 +14,7 @@
 	    </ul>
 	    <p> &#8594; CoffeeScript vereinfacht Syntax und verdeckt diese Probleme</p>
 	    <aside class="notes">
-		Sprachen die CoffeeScript (bzw. Javascript) beinflusst haben:
-	C:
-	Weit verbreitete sprache, imperative Porgrammiersparche. Javascript deliberately sieht aus wie C:
-	{} curly braces. Typischerweise geleehrten sprache c, c++ und java haben soclhe.
-	; Semicolon als Line Ending.
-	Scheme:
-	General purpose Programmmiersprache (Guy Steele und Gerald Sussman).
-	Dialekt von LISP (wenig gemeinsam mit C)
-	Lambda calculus => fällt heutzutage in die Kategorie funktinale programmierung. Inspiriert daher 
-	Self:
-	Objectorientierte Programmiersprache (David Ungar und Randall Smith). Konzept basiert auf prototypes. War damals anders als bis dahin C++ und Java, basiert auf Klassen. Prototypen flüssiger und dynamischer Weg als Klassen (statischer).
-	Übernommen:
-	Kleines mächtiges Set an Operationen/Primitiven tools als design goal.
-	Auch wenn es eher nach Java oder C++ aussieht, es hat manche Kernideen direkt aus Self und Scheme. Es sieht aus wie eine Sprache, handelt aber anders.
+	
 
 	</aside>
     </section>

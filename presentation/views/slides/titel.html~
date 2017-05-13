@@ -3,4 +3,6 @@
           <p> MSI</p>
           <p><small>Vortragende:</br> </br>Sabrina Sachs</br>Alexander Kononenko</small></p>
           <div class="msi-logo"></div>
+          <div class="cover"></div>
+          <aside class="notes">test halt ne</aside>
         </section>
