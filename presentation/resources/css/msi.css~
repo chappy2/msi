@@ -2,7 +2,9 @@
 color scheme:
 FF7400	BF7130	A64B00	FF9640	FFB273
 */
-
+.quellen {
+font-size:0.6em;
+}
 .cover {
     background-color:white;
     height:600px;
@@ -72,6 +74,9 @@ ol.msi-agenda>ul {
 .msi-layout-item-80 {
     display:table-cell;
     width: 80%
+}
+code {
+	background-color:black !important;
 }
 section.example-classes div.container{
 height:550px !important;
