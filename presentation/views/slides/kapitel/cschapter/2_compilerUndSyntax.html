@@ -4,7 +4,9 @@
     <p> Argumente zum kompilieren: compile, watch </p>
 <aside class="notes">
 <ul>
-<li> </li>
+<li> klassisches Hello World. Zum kompilieren coffee --compile.</li>
+<li>-- watch für dev. Änderungen in einem dokuemnt sofort kompiliert.</li>
+<li> was fällt auf? wenig klammern, einrückung, string interpolation </li>
 </ul></aside>
     </section>
 
@@ -44,7 +46,10 @@
      </table>
 <aside class="notes">
 <ul>
-<li> </li>
+<li> Was macht der compiler anders? {} durch einrückung ersetzt. kein var und return. </li>
+<li>Definition wird abgenommen und sicherheiten eingefügt (scoping). in javascript gibt es nur global und function scope</li>
+<li>function als pfeil: viel boilerplate weg. es gibt sehr viele functionen in javascript</li>
+<li>this als @</li>
 </ul></aside>
 </section>
 
@@ -83,7 +88,8 @@
      </table>
 <aside class="notes">
 <ul>
-<li> </li>
+<li> CoffeeScript hat Operatoren vereinfacht und aliase eingefügt (is). === wird automatisiert eingefügt. in cs nur == oder is nötig.</li>
+<li>aliase ermöglichen boolsche ausdrücke als "text" zu verfassen</li>
 </ul></aside>
 </section>
 
@@ -97,6 +103,9 @@
      </ul>
      <aside class="notes">
 <ul>
-<li> </li>
+<li>Die wichtigsten features: fat arrow (nimmt einem das binden ab) </li>
+<li>Comprehensions: in js oft iteriert: Die meisten Schleifen in JavaScript beispielsweise über Arrays, Objekte können in CoffeeScript über Comprehensions geschrieben werden</li>
+<li>Klassen vereinfachen typerweiterungen in js. verbergen die prototype chain für den programmierer.</li>
+<li> klassen schauen wir uns jetzt im detail genauer an</li>
 </ul></aside>
 </section>

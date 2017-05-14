@@ -7,13 +7,27 @@
 	        <li>Über <i>prototype chain</i></li>
 	        <li>Seit ECMAScript 5 <i>Object.create</i></li>
 	    </ul>
+
+<aside class="notes">
+<ul>
+<li>Javascript hat obbjektorientierte konzepte wie am anfang erwähnt </li>
+<li>aber nicht klassenbasiert</li>
+<li> das wird über die sogenannte prototype chain gelöst. Ein object kann das verhalten eines anderen objectes übernehmen, entlang der chain</li>
+<li>Das konzept ist nicht einfach zu verstehen, so gibt es zb seit ecma 5. edition die object.create methode</li>
+<li>diese soll das prinzip vereinfachen. Die funktionen setzt die nötige felder prototype und abstrahiert schon besser als zuvor</li>
+<li>cs noch einfacheres konzept durch das keyword class (syntactic sugar)</li>
+</ul></aside>s
     </section>
    
   <section class="msi-slides example-classes" data-run-in-terminal="code/example4/src/index.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile">
 	    <h2>Klassen</h2>
 	<aside class="notes">
 <ul>
-<li> </li>
+<li>Codeauszug aus der moviedatabase, etwas gekürzt natürlich</li>
+<li>Classe view hat zwei functionen</li>
+<li>die erweiternde klasse filmlistview überschreibt die render methode</li>
+<li>Im ergebnis log sieht man die prototypen: filmlistview hat die log methode übernommen, im constructor kann man die view erahnen (anhand der methoden).</li>
+<li>die neue render function steht unten</li>
 </ul></aside>
 </section>
  <section>
@@ -36,7 +50,11 @@ FilmListView = (function(superClass) {
 <p>  <span class="msi-icons-s msi-icons-bulb"></span> Instanziierung mit <i>new</i> möglich</p>
 <aside class="notes">
 <ul>
-<li> </li>
+<li>hier der generierte (auszug) javascript code</li>
+<li>coffee script benutzt eine eigene extend function (nicht die object create).</li>
+<li>Functionen einer klasse werden FilmListView.prototype. geschrieben</li>
+<li>so ungefähr würde oo in js funktionieren</li>
+<li>das mit new ein object erzeugt werden kann, liegt an der factory methode (new schlüsselwort gibt es in js, in verbindung mit functionen).</li>
 </ul></aside>
 </section>
 <section class="msi-slides" >
@@ -58,7 +76,10 @@ extend = function(child, parent) {
 </code></pre>
 <aside class="notes">
 <ul>
-<li> </li>
+<li>Die eigene extend methode, die am anfang der generierten js datei steht </li>
+<li>die Werte des parent werden in das child object übernommen</li>
+<li> die ctor ist die constructor methode. der prototyp des parent wird übernommen.</li>
+<li>__super__ ist der verweis auf die parent prototypen (chaining, deswegen verhalten wird übernommen)</li>
 </ul></aside>
 </section>
 </section>

@@ -123,10 +123,11 @@ localhost:5001
 #### Inhalte bis Sonntag
 - [x] Demofolien anpassen, link für repo
 - [x] logo überdecken ädern (REveal api)
-- [ ] speaker notes einfügen
+- [x] speaker notes einfügen
 - [x] css für plugin
 - [x] beamer test
 - [ ] format code for moviedatabase
+- [ ] zeiten pro folie (quiz weniger).
 - [x] transition bug
 - [x] fehler präsi
 - [x] +- fazit

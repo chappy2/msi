@@ -47,7 +47,7 @@ html
           slideNumber: true,
           overview: true,
           controls: false,
-          //defaultTiming:  60, 
+          defaultTiming:  60, 
           // More info https://github.com/hakimel/reveal.js#dependencies
       dependencies: [
           { src: 'plugin/reveal-run-in-terminal.js', async: true,
@@ -64,7 +64,7 @@ html
       Reveal.addEventListener( 'slidechanged', function( event ) {
       var elem=	document.getElementById("revealId");
       if (Reveal.isFirstSlide() || Reveal.isLastSlide()) {
-          elem.className =elem.className.Replace("reveal-overwrite","")
+          elem.className =elem.className.Replace("reveal-overwrite","");
                   
       } else {
           elem.className += " reveal-overwrite";
