@@ -126,7 +126,7 @@ localhost:5001
 - [x] speaker notes einfügen
 - [x] css für plugin
 - [x] beamer test
-- [ ] format code for moviedatabase
+- [x] format code for moviedatabase
 - [ ] zeiten pro folie (quiz weniger).
 - [x] transition bug
 - [x] fehler präsi
