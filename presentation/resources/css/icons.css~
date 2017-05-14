@@ -27,12 +27,6 @@
     background-position:center;
     background-size:128px 128px;
 }
-.msi-icons-minus {
-	background-image: url('../img/minus.svg');
-}
-.msi-icons-plus{
-	background-image: url('../img/plus.svg');
-}
 /* linecons-free-vector-icons-pack */
 .msi-icons-bubble {
      background-image: url('../img/linecons-free-vector-icons-pack/Bubble, chat, comment, speech, talk icon.svg');

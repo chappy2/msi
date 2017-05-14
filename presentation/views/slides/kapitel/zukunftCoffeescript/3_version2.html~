@@ -16,13 +16,13 @@
             <li > Einfachheit</li>
         </ul></li>
         </ul>
-        <aside class="notes">
-           heißt nicht, dass die 1.x Version von CoffeeScript kein ES 6 unterstützt. Viel mehr wurden die ES 6 Änderungen, die Probleme in verschiedenen Ablaufumgebungen verursacht haben, bereits in CoffeeScript adaptiert.  
+        <aside class="notes"><ul>
+          <li> heißt nicht, dass die 1.x Version von CoffeeScript kein ES 6 unterstützt. Viel mehr wurden die ES 6 Änderungen, die Probleme in verschiedenen Ablaufumgebungen verursacht haben, bereits in CoffeeScript adaptiert.  </li>   
 
-Ein Besipiel sind module. Die Keywords import und export werden von CoffeeScript entsprechend übersetzt. Hinweis in der Doku, dass für Nutzung die Ablaufumgebung ES 6 benötigt wird. restlichen Features von CoffeeScript können für ältere Browser genutzt werden. Damit ist eine gewisse Kompatibilität der verschiedenen JavaScript Standards geschaffen.  
+<li>Ein Besipiel sind module. Die Keywords import und export werden von CoffeeScript entsprechend übersetzt. Hinweis in der Doku, dass für Nutzung die Ablaufumgebung ES 6 benötigt wird. restlichen Features von CoffeeScript können für ältere Browser genutzt werden. Damit ist eine gewisse Kompatibilität der verschiedenen JavaScript Standards geschaffen.  </li>   
 
-In 2. Version von CoffeeScript, müssen die Ablaufumgebungen ES 6 interpretieren können.  
+<li>In 2. Version von CoffeeScript, müssen die Ablaufumgebungen ES 6 interpretieren können.  </li>   
 
-CoffeeScript’s Intention war nicht ein Superset von JavaScript zu sein. Hauptziele: Einfachheit, nicht nur die Probleme von JavaScript zu beseitigen. Eher über saubereren Syntax und Einrücken, den Quellcode einfacher lesen zu können. Durch bessere Verständlichkeit soll Qualität gesteigert und die Fehler minimiert. Damit bleiben diese Vorteile für CoffeeScript erhalten, auch mit neuen Standard. 
-        </aside>
+<li>CoffeeScript’s Intention war nicht ein Superset von JavaScript zu sein. Hauptziele: Einfachheit, nicht nur die Probleme von JavaScript zu beseitigen. Eher über saubereren Syntax und Einrücken, den Quellcode einfacher lesen zu können. Durch bessere Verständlichkeit soll Qualität gesteigert und die Fehler minimiert. Damit bleiben diese Vorteile für CoffeeScript erhalten, auch mit neuen Standard. 
+  </li>      </ul>   </aside>
     </section>

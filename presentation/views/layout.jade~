@@ -40,34 +40,34 @@ html
     script.
       // More info https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-      history: true,
-      width: '80%',
-      height: '100%',
-      transition: 'convex',
-      slideNumber: true,
-      overview: true,
-      controls: false,
-      defaultTiming:  120, 
-      // More info https://github.com/hakimel/reveal.js#dependencies
+          history: true,
+          width: '80%',
+          height: '100%',
+          transition: 'convex',
+          slideNumber: true,
+          overview: true,
+          controls: false,
+          //defaultTiming:  60, 
+          // More info https://github.com/hakimel/reveal.js#dependencies
       dependencies: [
-      { src: 'plugin/reveal-run-in-terminal.js', async: true,
-      callback: function() {
-      RunInTerminal.init({defaultBin: 'node'});
-      } },
-      { src: 'plugin/markdown/marked.js' },
-      { src: 'plugin/markdown/markdown.js' },
-      { src: 'socket.io/socket.io.js', async: true },
-      { src: 'plugin/notes/notes.js', async: true },
-      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-      ]
+          { src: 'plugin/reveal-run-in-terminal.js', async: true,
+          callback: function() {
+              RunInTerminal.init({defaultBin: 'node'});
+          }},
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+          ]
       });
+
       Reveal.addEventListener( 'slidechanged', function( event ) {
       var elem=	document.getElementById("revealId");
       if (Reveal.isFirstSlide() || Reveal.isLastSlide()) {
-          console.log("no logo")
-          elem.setAttribute("class","reveal")         
+          elem.className =elem.className.Replace("reveal-overwrite","")
+                  
       } else {
-          console.log("logo")
-          elem.setAttribute("class","reveal reveal-overwrite")
+          elem.className += " reveal-overwrite";
       }
-      } );
+      });
+      
