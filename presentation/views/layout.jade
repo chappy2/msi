@@ -64,7 +64,7 @@ html
       Reveal.addEventListener( 'slidechanged', function( event ) {
       var elem=	document.getElementById("revealId");
       if (Reveal.isFirstSlide() || Reveal.isLastSlide()) {
-          elem.className =elem.className.Replace("reveal-overwrite","");
+          elem.className =elem.className.replace("reveal-overwrite","");
                   
       } else {
           elem.className += " reveal-overwrite";

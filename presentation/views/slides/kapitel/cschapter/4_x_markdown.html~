@@ -1,9 +1,9 @@
 <section>
-<section class="msi-slides" data-markdown>
+<section data-timing="30" class="msi-slides" data-markdown>
 <script type="text/template">
 ## Literate Programming
  - Zuerst Beschreibung für Programm erstellen
- - Programmcode aus .litcoffee sind Kommentare und Kommentare sind Quellcode
+ - Programmcode aus *.litcoffee* sind Kommentare und Kommentare sind Quellcode
  - Valide Syntax für Markdown
    
    
@@ -21,7 +21,7 @@
 ```
 ## Literate Programming
  - Zuerst Beschreibung für Programm erstellen
- - Programmcode aus .litcoffee sind Kommentare und Kommentare sind Quellcode
+ - Programmcode aus *.litcoffee* sind Kommentare und Kommentare sind Quellcode
  - Valide Syntax für Markdown
     
       

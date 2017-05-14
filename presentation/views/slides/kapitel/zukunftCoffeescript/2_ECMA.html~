@@ -9,15 +9,15 @@
             <li>Klassen</li>
         </ul>
         <p>Allein die Syntax unterscheidet sich zu CoffeeScript</p>
-        <aside class="notes">
-           7. Edition von ECMAScript ist zwar die aktuelle, aber die 6. Edition hat den JavaScript Standard grundlegend verändert. 
+        <aside class="notes"><ul>
+         <li>  7. Edition von ECMAScript ist zwar die aktuelle, aber die 6. Edition hat den JavaScript Standard grundlegend verändert. </li>   
 
-Ziel von ES6 war es diverse Praktiken, die sich in der Community von JavaScript ergeben haben, konsequent umzusetzen. Dies ist unter anderem auch auf Konzepte zurückzuführen, die vor allem in CoffeeScript zum Tragen gekommen sind. 
+<li>Ziel von ES6 war es diverse Praktiken, die sich in der Community von JavaScript ergeben haben, konsequent umzusetzen. Dies ist unter anderem auch auf Konzepte zurückzuführen, die vor allem in CoffeeScript zum Tragen gekommen sind. </li>   
 
-Block Scoped automatisch, indem Variablendeklarationen außerhalb des scopes deklariert. ES6 benutzt Let. 
+<li>Block Scoped automatisch, indem Variablendeklarationen außerhalb des scopes deklariert. ES6 benutzt Let. </li>   
 
-Template Strings: mithilfe von String-Interpolation, bei dem es möglich ist innerhalb eines Strings auf Variablen außerhalb des Strings zu verweisen. 
+<li>Template Strings: mithilfe von String-Interpolation, bei dem es möglich ist innerhalb eines Strings auf Variablen außerhalb des Strings zu verweisen. </li>   
 
-Für einen Großteil von ES6 Funktionen lässt sich sagen, dass die Konventionen, die Entwickler bereits aus CoffeeScript kennen, übertragen lassen. Allein die Syntax unterscheidet sich etwas.  
-        </aside>
+<li>Für einen Großteil von ES6 Funktionen lässt sich sagen, dass die Konventionen, die Entwickler bereits aus CoffeeScript kennen, übertragen lassen. Allein die Syntax unterscheidet sich etwas.  </li>   
+     </ul>   </aside>
     </section>

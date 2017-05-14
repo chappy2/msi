@@ -1,5 +1,5 @@
 
-<section class="msi-slides" data-run-in-terminal="code/example1/src/index.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
+<section data-timing="50" class="msi-slides" data-run-in-terminal="code/example1/src/index.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
     <h2>Compiler und Syntax</h2>
     <p> Argumente zum kompilieren: compile, watch </p>
 <aside class="notes">
@@ -11,7 +11,7 @@
     </section>
 
 
-<section class="msi-slides" >
+<section data-timing="45" class="msi-slides" >
      <h2>Compiler und Syntax</h2>
      <h4>Ersetzungen von CoffeeScript</h4>
      <table class="comsyn">
@@ -53,7 +53,7 @@
 </ul></aside>
 </section>
 
-<section class="msi-slides" >
+<section data-timing="45" class="msi-slides" >
      <h2>Compiler und Syntax</h2>
      <h4>Operatoren von CoffeeScript</h4>
      <table class="">
@@ -93,7 +93,7 @@
 </ul></aside>
 </section>
 
-<section class="msi-slides" >
+<section data-timing="45" class="msi-slides" >
      <h2>Compiler und Syntax</h2>
      <h4>CoffeeScript Features</h4>
      <ul>

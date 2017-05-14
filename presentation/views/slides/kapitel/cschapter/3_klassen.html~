@@ -1,4 +1,4 @@
-    <section class="msi-slides" >
+    <section data-timing="45" class="msi-slides" >
 	    <h2>Klassen</h2>
 	    <h4>Typerweiterung in JavaScript</h4>
 	    <ul>
@@ -16,10 +16,10 @@
 <li>Das konzept ist nicht einfach zu verstehen, so gibt es zb seit ecma 5. edition die object.create methode</li>
 <li>diese soll das prinzip vereinfachen. Die funktionen setzt die nötige felder prototype und abstrahiert schon besser als zuvor. direkte Typerweiterung möglich</li>
 <li>cs noch einfacheres konzept durch das keyword class (syntactic sugar)</li>
-</ul></aside>s
+</ul></aside>
     </section>
    
-  <section class="msi-slides example-classes" data-run-in-terminal="code/example4/src/index.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile">
+  <section data-timing="80" class="msi-slides example-classes" data-run-in-terminal="code/example4/src/index.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile">
 	    <h2>Klassen</h2>
 	<aside class="notes">
 <ul>
@@ -31,7 +31,7 @@
 </ul></aside>
 </section>
  <section>
- <section class="msi-slides" >
+ <section data-timing="105" class="msi-slides" >
 	    <h2>Klassen</h2>
 	    <p>Auszug aus Moviedatabase clientApp.js</p>
 	    <pre><code class="javascript">
@@ -52,13 +52,13 @@ MovieListView = (function(superClass) {
 <ul>
 <li>hier der generierte (auszug) javascript code</li>
 <li>coffee script benutzt eine eigene extend function (nicht die object create, macht aber prinzipiell das gleiche).</li>
-<li>Functionen einer klasse werden FilmListView.prototype. geschrieben</li>
+<li>Functionen einer klasse werden MovieListView.prototype. geschrieben</li>
 <li>so ungefähr würde oo in js funktionieren</li>
 <li> der zusätzlich Scope verhindert, das private variablen angelegt werden können(andere compile.. machen das). private durch naming convention __ (ähnlich zu ruby)</li>
 <li>das mit new ein object erzeugt werden kann, liegt an der factory methode(constructor) (new schlüsselwort gibt es in js, in verbindung mit functionen).Hier treffen funktional und oo idiome aufeindern. new suggeriert etwas anderes, als es eigentlich ist (keine instanziierung!).</li>
 </ul></aside>
 </section>
-<section class="msi-slides" >
+<section data-timing="60" class="msi-slides" >
 	    <h2>Klassen</h2>
 	    <p>Auszug aus Moviedatabase clientApp.js</p>
 	    <pre><code class="javascript">

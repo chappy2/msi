@@ -127,7 +127,7 @@ localhost:5001
 - [x] css für plugin
 - [x] beamer test
 - [x] format code for moviedatabase
-- [ ] zeiten pro folie (quiz weniger).
+- [x] zeiten pro folie (quiz weniger).
 - [x] transition bug
 - [x] fehler präsi
 - [x] +- fazit

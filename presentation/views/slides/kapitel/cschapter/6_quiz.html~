@@ -1,28 +1,28 @@
  <!--section class="msi-slides" data-run-in-terminal="code/quiz/src/1_frage.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
     <h2>Quiz - Frage 1</h2>
     </section-->
- <section class="msi-slides error-hide" data-run-in-terminal="code/quiz/src/2_frage.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
+ <section class="msi-slides error-hide" data-timing="35" data-run-in-terminal="code/quiz/src/2_frage.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
     <h2>
           Quiz <span class="msi-icons-m msi-icons-study"></span> </h2>
     <h4>Kompiliert der Code?</h4>
  <aside class="notes">Wer glaub der code compiliert, (handzeichen)... wer nicht.
     </aside>
     </section>
- <section class="msi-slides" data-run-in-terminal="code/quiz/src/2_loesung.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
+ <section class="msi-slides" data-timing="35" data-run-in-terminal="code/quiz/src/2_loesung.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
     <h2> 
            Quiz <span class="msi-icons-m msi-icons-study"></span></h2>
     <h4>Lösung: so kompiliert der Code</h4>
 <aside class="notes">Eigentlich sollte man keine klammern verwenden. wenn doch, dann leerzeichen weglassen. Fehler erst bei zweiten. Die klammer wird versucht auszuwerten. bei dem ersten funktioniert es (gültiger ausdruck).
     </aside>
     </section>
- <section class="msi-slides" data-run-in-terminal="code/quiz/src/3_frage.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
+ <section class="msi-slides" data-timing="35" data-run-in-terminal="code/quiz/src/3_frage.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
     <h2>
           Quiz <span class="msi-icons-m msi-icons-study"></span> </h2>
     <h4>Werden Klammern hier benötigt?</h4>
-<aside class="notes">Eigentlich sollte man keine klammern verwenden. wenn doch, dann leerzeichen weglassen.
+<aside class="notes">
     </aside>
     </section>
- <section class="msi-slides" data-run-in-terminal="code/quiz/src/3_loesung.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
+ <section class="msi-slides" data-timing="35" data-run-in-terminal="code/quiz/src/3_loesung.coffee" data-run-in-terminal-bin="coffee" data-run-in-terminal-args=" --compile ">
     <h2> 
       Quiz <span class="msi-icons-m msi-icons-study"></span> </h2>
     <h4>Ja, zum Ausführen der Funktion</h4>

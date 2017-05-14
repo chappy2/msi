@@ -1,31 +1,13 @@
-<section class="msi-slides">
+<section data-timing="" class="msi-slides">
           <h2>Agenda</h2>
           <ol class="msi-agenda">
               <li>Einleitung</li>
-                <ul>
-              </ul>
-              <!--ul>
-                        <li>Historie von Javascript</li>
-                         <li>Probleme von Javascript</li>
-              </ul-->
+               
               <li>CoffeeScript</li>
-             <ul>
-         
-                  </ul>
-               <!--ul>
-                        <li>Compiler und Syntax</li>
-                         <li>Klassen</li>
-                         <li>Literate Programming</li>
-                         <li>Cake und Sourcemaps</li>
-                         
-              </ul-->
+            
               <li>Zukunft von CoffeeScript</li>
-             <ul> <li></li> </ul>
-               <!--ul>
-                        <li>ECMA 5. und 6. Edition</li>
-                         <li>...</li>
-                         <li>...</li>
-              </ul-->
+           
+               
               <li>Fazit</li>
           </ol>
 <aside class="notes">
