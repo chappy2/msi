@@ -126,17 +126,19 @@ localhost:5001
 - [x] speaker notes einfügen
 - [x] css für plugin
 - [x] beamer test
-- [ ] format code for moviedatabase
+- [x] format code for moviedatabase
 - [ ] zeiten pro folie (quiz weniger).
 - [x] transition bug
 - [x] fehler präsi
 - [x] +- fazit
 - [ ] präsi als pdf exportieren
+- [x] daten demo localstorage vorbereiten
 - [x] repo extra für moviedatabase
 - [x] readme mit erklärung
 - [x] .litcoffee erstellen
 #### Check Montag
 - [ ] Quellen seite passt?
+- [ ] demo höhe iframe (nochmal angepasst)
 - [ ] Vergleichsfolie passt? mit den iframes
 #### Fragen dozent
 - [x] #seiten nur text? 

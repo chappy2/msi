@@ -5,6 +5,6 @@
 <p><a href="https://github.com/chappy2/Moviedatabase">https://github.com/chappy2/Moviedatabase</a></p>
 <aside class="notes">WAW</aside>
 </section>
-	include ./vergleich.html
+include vergleich.html
 </section>
 
