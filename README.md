@@ -131,13 +131,13 @@ localhost:5001
 - [x] transition bug
 - [x] fehler präsi
 - [x] +- fazit
-- [ ] präsi als pdf exportieren
+- [x] präsi als pdf exportieren
 - [x] daten demo localstorage vorbereiten
 - [x] repo extra für moviedatabase
 - [x] readme mit erklärung
 - [x] .litcoffee erstellen
 #### Check Montag
-- [ ] Quellen seite passt?
+- [ ] Quellen seite passt? sourcemaps hinzugefügt!
 - [ ] demo höhe iframe (nochmal angepasst)
 - [ ] Vergleichsfolie passt? mit den iframes
 #### Fragen dozent
